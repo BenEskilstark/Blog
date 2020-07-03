@@ -1,0 +1,43 @@
+#!/bin/bash
+
+mkdir css/
+touch css/styles.css
+
+mkdir js
+mkdir server
+
+touch TODO
+mkdir todos
+touch todos/INLINE
+touch favicon.ico
+
+npm init
+
+# flow
+sudo npm install --save-dev flow-bin
+
+# browserify
+sudo npm install -g browserify
+
+# babel
+sudo npm install babel-preset-flow
+sudo npm install babel-preset-es2015
+sudo npm install babel-cli babel-core --save-dev
+sudo npm install --save-dev babel-plugin-transform-react-jsx
+sudo npm install --save-dev babel-plugin-transform-object-rest-spread
+
+# react
+sudo npm install --save react react-dom
+
+# db
+# sudo npm install sqlite3
+sudo npm install pg
+
+# express
+npm install express --save
+
+# axios (for REST from react)
+npm install axios
+
+# for authentication tokens
+npm install jsonwebtoken

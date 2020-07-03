@@ -1,0 +1,43 @@
+
+- - - - - FRIDAY - - - - -
+  - make git
+    - ignore node_modules
+  - comments
+    - comments page directory with this front end
+    - comment creation UI
+    - comment display below posts
+  - button for deleting comments available only to admin
+
+
+- - - - - FRONTEND - - - - -
+  - clone BenEskildsen.github.io
+  - copy over relevant posts to here
+  - get iframe working on frontend to display post
+  - pages:
+    - about, contact,
+
+
+- - - - - BACKEND - - - - -
+  - how to track pageviews?
+
+
+- - - - - NEXT - - - - -
+  - need to handle fbclid query
+  - GDPR disclaimer?
+  - How to handle comments on outgoing links?
+  - better styling for posts, home page
+  - set up domain
+  - deploy to heroku
+
+
+- - - - - WISH - - - - -
+  - email confirmation
+  - refresh tokens
+  - handle failure to create user (e.g. duplicate username)
+  - user profiles
+  - embedding amazon images?
+  - stuff for family?
+
+
+- - - - - INLINE - - - - -
+server/dbUtils.js:  // TODO: can you connect/end the same client multiple times?

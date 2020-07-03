@@ -1,0 +1,18 @@
+
+create table blog_users (
+  username varchar(50) primary key,
+  password varchar(150) not null,
+  permissionlevel integer not null,
+  email varchar(80),
+  numLogins integer default 0,
+  createdat timestamp default current_timestamp,
+  lastLogin timestamp
+);
+
+create table blog_comments (
+  id serial primary key,
+  username varchar(50),
+  thread varchar(100),
+  comment text,
+  createdat timestamp default current_timestamp,
+);
