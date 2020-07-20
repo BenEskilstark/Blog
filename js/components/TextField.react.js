@@ -6,11 +6,14 @@ const React = require('React');
  *  - placeholder: ?str
  *  - password: ?boolean
  *  - onChange: (str) => void
+ *  - style: Object
  */
 const TextField = (props) => {
   const {value, placeholder, password, onChange} = props;
+  const style = props.style != null ? props.style : {};
   return (
     <input
+      style={style}
       placeholder={placeholder}
       type={password ? 'password' : 'text'}
       value={value}

@@ -1,20 +1,16 @@
 
-- - - - - MONDAY - - - - -
-  - need to handle fbclid query param
-  - comments
-    - comments page directory with this front end
-    - comment display at a /threads directory
-    - comment creation UI
-  - button for deleting comments available only to admin
-
+- - - - - TUESDAY - - - - -
+  - clone BenEskildsen.github.io
+  - copy over relevant posts to here
+  - get iframe working on frontend to display post
 
 - - - - - FRONTEND - - - - -
-  - get iframe working on frontend to display post
+  - button for logging out
+  - comments
+    - update comment thread when another user posts a comment
 
 
 - - - - - CONTENT - - - - -
-  - clone BenEskildsen.github.io
-  - copy over relevant posts to here
   - pages:
     - about, contact,
 
@@ -24,6 +20,9 @@
 
 
 - - - - - NEXT - - - - -
+  - How to handle logging users out
+    - update secret string with current date?
+    - use iat to invalidate tokens?
   - How to handle comments on outgoing links?
   - better styling for posts, home page
   - set up domain

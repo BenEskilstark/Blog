@@ -2,6 +2,7 @@
 const express = require('express')
 const {
   writeQuery, selectQuery, updateQuery,
+  deleteQuery,
 } = require('./dbUtils');
 const {
   validJWTNeeded,
@@ -107,15 +108,29 @@ const postComment = (req, res) => {
     });
 }
 
+const deleteComment = (req, res) => {
+  const {id} = req.body;
+  deleteQuery('blog_comments', {id})
+    .then((result) => res.status(201).send({}))
+    .catch((err) => {
+      res.status(500).send({error: 'couldn\'t delete comment'});
+    });
+}
+
 comments.get('/thread', [
   // validJWTNeeded,
   // minimumPermissionLevelRequired(0),
   getCommentThread,
 ]);
-comments.post('/thread', [
+comments.post('/comment', [
   validJWTNeeded,
   // minimumPermissionLevelRequired(0),
   postComment,
+]);
+comments.post('/delete', [
+  validJWTNeeded,
+  minimumPermissionLevelRequired(7),
+  deleteComment,
 ]);
 
 // -------------------------------------------------------------------------
@@ -124,6 +139,6 @@ comments.post('/thread', [
 const blog = express();
 blog.use(express.static('home'));
 blog.use('/users', users);
-blog.use('/comments', comments);
+blog.use('/threads', comments);
 console.log("server listening on port", port);
 blog.listen(port);

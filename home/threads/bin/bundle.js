@@ -1914,7 +1914,7 @@ exports.version = ReactVersion;
 }
 
 }).call(this,require('_process'))
-},{"_process":49,"object-assign":30,"prop-types/checkPropTypes":31}],2:[function(require,module,exports){
+},{"_process":50,"object-assign":30,"prop-types/checkPropTypes":31}],2:[function(require,module,exports){
 /** @license React v16.13.1
  * react.production.min.js
  *
@@ -1952,7 +1952,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/react.development.js":1,"./cjs/react.production.min.js":2,"_process":49}],4:[function(require,module,exports){
+},{"./cjs/react.development.js":1,"./cjs/react.production.min.js":2,"_process":50}],4:[function(require,module,exports){
 module.exports = require('./lib/axios');
 },{"./lib/axios":6}],5:[function(require,module,exports){
 'use strict';
@@ -2820,7 +2820,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 }).call(this,require('_process'))
-},{"./adapters/http":5,"./adapters/xhr":5,"./helpers/normalizeHeaderName":26,"./utils":29,"_process":49}],20:[function(require,module,exports){
+},{"./adapters/http":5,"./adapters/xhr":5,"./helpers/normalizeHeaderName":26,"./utils":29,"_process":50}],20:[function(require,module,exports){
 'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -3705,7 +3705,7 @@ checkPropTypes.resetWarningCache = function() {
 module.exports = checkPropTypes;
 
 }).call(this,require('_process'))
-},{"./lib/ReactPropTypesSecret":32,"_process":49}],32:[function(require,module,exports){
+},{"./lib/ReactPropTypesSecret":32,"_process":50}],32:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -28735,7 +28735,7 @@ exports.version = ReactVersion;
 }
 
 }).call(this,require('_process'))
-},{"_process":49,"object-assign":30,"prop-types/checkPropTypes":31,"react":38,"scheduler":43,"scheduler/tracing":44}],34:[function(require,module,exports){
+},{"_process":50,"object-assign":30,"prop-types/checkPropTypes":31,"react":38,"scheduler":43,"scheduler/tracing":44}],34:[function(require,module,exports){
 /** @license React v16.13.1
  * react-dom.production.min.js
  *
@@ -29071,13 +29071,13 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/react-dom.development.js":33,"./cjs/react-dom.production.min.js":34,"_process":49}],36:[function(require,module,exports){
+},{"./cjs/react-dom.development.js":33,"./cjs/react-dom.production.min.js":34,"_process":50}],36:[function(require,module,exports){
 arguments[4][1][0].apply(exports,arguments)
-},{"_process":49,"dup":1,"object-assign":30,"prop-types/checkPropTypes":31}],37:[function(require,module,exports){
+},{"_process":50,"dup":1,"object-assign":30,"prop-types/checkPropTypes":31}],37:[function(require,module,exports){
 arguments[4][2][0].apply(exports,arguments)
 },{"dup":2,"object-assign":30}],38:[function(require,module,exports){
 arguments[4][3][0].apply(exports,arguments)
-},{"./cjs/react.development.js":36,"./cjs/react.production.min.js":37,"_process":49,"dup":3}],39:[function(require,module,exports){
+},{"./cjs/react.development.js":36,"./cjs/react.production.min.js":37,"_process":50,"dup":3}],39:[function(require,module,exports){
 (function (process){
 /** @license React v0.19.1
  * scheduler-tracing.development.js
@@ -29430,7 +29430,7 @@ exports.unstable_wrap = unstable_wrap;
 }
 
 }).call(this,require('_process'))
-},{"_process":49}],40:[function(require,module,exports){
+},{"_process":50}],40:[function(require,module,exports){
 /** @license React v0.19.1
  * scheduler-tracing.production.min.js
  *
@@ -30304,7 +30304,7 @@ exports.unstable_wrapCallback = unstable_wrapCallback;
 }
 
 }).call(this,require('_process'))
-},{"_process":49}],42:[function(require,module,exports){
+},{"_process":50}],42:[function(require,module,exports){
 /** @license React v0.19.1
  * scheduler.production.min.js
  *
@@ -30338,7 +30338,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/scheduler.development.js":41,"./cjs/scheduler.production.min.js":42,"_process":49}],44:[function(require,module,exports){
+},{"./cjs/scheduler.development.js":41,"./cjs/scheduler.production.min.js":42,"_process":50}],44:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -30349,7 +30349,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/scheduler-tracing.development.js":39,"./cjs/scheduler-tracing.production.min.js":40,"_process":49}],45:[function(require,module,exports){
+},{"./cjs/scheduler-tracing.development.js":39,"./cjs/scheduler-tracing.production.min.js":40,"_process":50}],45:[function(require,module,exports){
 'use strict';
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -30423,20 +30423,153 @@ module.exports = Button;
 },{"React":3}],46:[function(require,module,exports){
 'use strict';
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var axios = require('axios');
+var Button = require('./Button.react');
 var React = require('react');
+var useState = React.useState;
 
-function Divider(props) {
-  return React.createElement('div', {
-    style: {
-      width: '100%',
-      height: '0px',
-      border: '1px solid black'
-    }
-  });
-}
 
-module.exports = Divider;
-},{"react":38}],47:[function(require,module,exports){
+var CARD_STYLE = {
+  padding: '4px',
+  marginBottom: '8px',
+  maxWidth: '500px'
+};
+var HEADER_STYLE = {
+  borderBottom: '1px solid black'
+};
+var BODY_STYLE = {
+  padding: '2px'
+};
+
+var CommentCard = function CommentCard(props) {
+  var username = props.username,
+      createdat = props.createdat,
+      comment = props.comment,
+      id = props.id;
+
+  var _useState = useState(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isDeleted = _useState2[0],
+      setDelete = _useState2[1];
+
+  var deleteButton = null;
+  if (localStorage.getItem('username') == 'admin') {
+    deleteButton = React.createElement(Button, {
+      style: { float: 'right' },
+      label: 'Delete',
+      onClick: function onClick() {
+        axios.post('delete', { id: id }, { headers: { authorization: 'Bearer ' + localStorage.getItem('accessToken') } }).then(function (res) {
+          setDelete(true);
+        }).catch(function (err) {
+          console.log(err);
+        });
+      }
+    });
+  }
+
+  if (isDeleted) return null;
+
+  return React.createElement(
+    'div',
+    { style: CARD_STYLE, key: username + '_' + comment },
+    React.createElement(
+      'div',
+      { style: HEADER_STYLE },
+      React.createElement(
+        'b',
+        null,
+        username
+      ),
+      ' ',
+      new Date(createdat).toDateString(),
+      deleteButton
+    ),
+    React.createElement(
+      'div',
+      { style: BODY_STYLE },
+      comment
+    )
+  );
+};
+
+module.exports = CommentCard;
+},{"./Button.react":45,"axios":4,"react":38}],47:[function(require,module,exports){
+'use strict';
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var axios = require('axios');
+var React = require('react');
+var Button = require('./Button.react');
+var TextField = require('./TextField.react');
+var useEffect = React.useEffect,
+    useState = React.useState;
+
+
+var COMPOSER_STYLE = {
+  padding: '4px',
+  marginBottom: '8px',
+  maxWidth: '500px'
+};
+var HEADER_STYLE = {};
+var BODY_STYLE = {};
+var FOOTER_STYLE = {};
+
+var Composer = function Composer(props) {
+  var thread = props.thread,
+      onSubmit = props.onSubmit;
+
+
+  var username = localStorage.getItem('username');
+
+  var _useState = useState(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      comment = _useState2[0],
+      setComment = _useState2[1];
+
+  return React.createElement(
+    'div',
+    { style: COMPOSER_STYLE },
+    React.createElement(
+      'div',
+      { style: HEADER_STYLE },
+      'Posting as: ',
+      React.createElement(
+        'b',
+        null,
+        username
+      )
+    ),
+    React.createElement(TextField, {
+      style: BODY_STYLE,
+      value: comment,
+      onChange: setComment
+    }),
+    React.createElement(
+      'div',
+      { style: FOOTER_STYLE },
+      React.createElement(Button, {
+        style: { float: 'right' },
+        disabled: username == null,
+        label: username != null ? 'Submit Comment' : 'Must Log In to Comment',
+        onClick: function onClick() {
+          if (comment == '') return;
+          axios.post('comment', { thread: thread, username: username, comment: comment }, { headers: { authorization: 'Bearer ' + localStorage.getItem('accessToken') } }).then(function (res) {
+            setComment('');
+            onSubmit();
+          }).catch(function (err) {
+            console.log(err);
+          });
+        }
+      })
+    )
+  );
+};
+
+module.exports = Composer;
+},{"./Button.react":45,"./TextField.react":48,"axios":4,"react":38}],48:[function(require,module,exports){
 'use strict';
 
 var React = require('React');
@@ -30468,167 +30601,61 @@ var TextField = function TextField(props) {
 };
 
 module.exports = TextField;
-},{"React":3}],48:[function(require,module,exports){
+},{"React":3}],49:[function(require,module,exports){
 'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Button = require('../components/Button.react');
-var Divider = require('../components/Divider.react');
-var TextField = require('../components/TextField.react');
 var axios = require('axios');
+var CommentCard = require('../components/CommentCard.react');
+var Composer = require('../components/Composer.react');
 var useEffect = React.useEffect,
     useState = React.useState;
 
 
-var Main = function Main() {
-  var _useState = useState(''),
+var Thread = function Thread(props) {
+  var _useState = useState([]),
       _useState2 = _slicedToArray(_useState, 2),
-      username = _useState2[0],
-      setUsername = _useState2[1];
+      comments = _useState2[0],
+      setComments = _useState2[1];
 
-  var _useState3 = useState(''),
+  var _useState3 = useState(0),
       _useState4 = _slicedToArray(_useState3, 2),
-      password = _useState4[0],
-      setPassword = _useState4[1];
+      staleCounter = _useState4[0],
+      setStale = _useState4[1];
 
-  var _useState5 = useState(null),
-      _useState6 = _slicedToArray(_useState5, 2),
-      loginMessage = _useState6[0],
-      setLoginMessage = _useState6[1];
-
-  var _useState7 = useState(''),
-      _useState8 = _slicedToArray(_useState7, 2),
-      createUsername = _useState8[0],
-      setCreateUsername = _useState8[1];
-
-  var _useState9 = useState(''),
-      _useState10 = _slicedToArray(_useState9, 2),
-      createPassword = _useState10[0],
-      setCreatePassword = _useState10[1];
-
-  var _useState11 = useState(null),
-      _useState12 = _slicedToArray(_useState11, 2),
-      createMessage = _useState12[0],
-      setCreateMessage = _useState12[1];
+  useEffect(function () {
+    axios.get('thread', {
+      params: { thread: 'home' }
+      // headers: {authorization: 'Bearer ' + localStorage.getItem('accessToken')},
+    }).then(function (res) {
+      res.data.sort(function (c1, c2) {
+        return new Date(c1.createdat) - new Date(c2.createdat);
+      });
+      setComments(res.data);
+    }).catch(function (err) {
+      console.log(err);
+    });
+  }, [staleCounter]);
 
   return React.createElement(
-    'div',
-    {
-      style: {
-        margin: 'auto',
-        maxWidth: 600,
-        textAlign: 'center'
-      }
-    },
-    React.createElement(
-      'div',
-      null,
-      React.createElement(
-        'h2',
-        null,
-        'Create User:'
-      ),
-      React.createElement(
-        'div',
-        null,
-        'Username:',
-        React.createElement(TextField, {
-          value: createUsername,
-          onChange: setCreateUsername
-        })
-      ),
-      React.createElement(
-        'div',
-        null,
-        'Password:',
-        React.createElement(TextField, {
-          value: createPassword,
-          password: true,
-          onChange: setCreatePassword
-        })
-      ),
-      React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'b',
-          null,
-          createMessage
-        )
-      ),
-      React.createElement(Button, {
-        label: 'Create User',
-        onClick: function onClick() {
-          axios.post('create', { username: createUsername, password: createPassword }).then(function (res) {
-            return setCreateMessage('Successfully created: ' + res.data.username);
-          }).catch(function (err) {
-            return setCreateMessage(err.response.data.error);
-          });
-        }
-      })
-    ),
-    React.createElement(Divider, null),
-    React.createElement(
-      'div',
-      null,
-      React.createElement(
-        'h2',
-        null,
-        'Login as User:'
-      ),
-      React.createElement(
-        'div',
-        null,
-        'Username:',
-        React.createElement(TextField, {
-          value: username,
-          onChange: setUsername
-        })
-      ),
-      React.createElement(
-        'div',
-        null,
-        'Password:',
-        React.createElement(TextField, {
-          value: password,
-          password: true,
-          onChange: setPassword
-        })
-      ),
-      React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'b',
-          null,
-          loginMessage
-        )
-      ),
-      React.createElement(Button, {
-        label: 'Login',
-        onClick: function onClick() {
-          axios.post('login', { username: username, password: password }).then(function (res) {
-            setLoginMessage('Logged in as ' + username);
-            // window.accessToken = res.data.accessToken;
-            localStorage.setItem('username', username);
-            localStorage.setItem('accessToken', res.data.accessToken);
-            localStorage.setItem('refreshToken', res.data.refreshToken);
-          }).catch(function (err) {
-            if (err && err.response && err.response.data) {
-              setLoginMessage(err.response.data.error);
-            }
-          });
-        }
-      })
-    )
+    'span',
+    null,
+    comments.map(function (c) {
+      return React.createElement(CommentCard, _extends({}, c, { key: c.username + '_' + c.comment }));
+    }),
+    React.createElement(Composer, { thread: 'home', onSubmit: function onSubmit() {
+        return setStale(staleCounter + 1);
+      } })
   );
 };
 
-ReactDOM.render(React.createElement(Main, null), document.getElementById('container'));
-},{"../components/Button.react":45,"../components/Divider.react":46,"../components/TextField.react":47,"axios":4,"react":38,"react-dom":35}],49:[function(require,module,exports){
+ReactDOM.render(React.createElement(Thread, null), document.getElementById('container'));
+},{"../components/CommentCard.react":46,"../components/Composer.react":47,"axios":4,"react":38,"react-dom":35}],50:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -30814,4 +30841,4 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[48]);
+},{}]},{},[49]);

@@ -6,6 +6,7 @@ body {
   width: 100vw;
   height: 100vh;
   user-select: none;
+  box-sizing: border-box;
   touch-action: none;
   -webkit-user-select: none;
 }

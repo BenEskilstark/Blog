@@ -78,9 +78,10 @@ const Main = () => {
             axios.post('login', {username, password})
               .then((res) => {
                 setLoginMessage('Logged in as ' + username);
-                window.accessToken = res.data.accessToken;
-                // localStorage.setItem('accessToken', res.data.accessToken);
-                // localStorage.setItem('refreshToken', res.data.refreshToken);
+                // window.accessToken = res.data.accessToken;
+                localStorage.setItem('username', username);
+                localStorage.setItem('accessToken', res.data.accessToken);
+                localStorage.setItem('refreshToken', res.data.refreshToken);
               })
               .catch((err) => {
                 if (err && err.response && err.response.data) {

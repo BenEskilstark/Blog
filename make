@@ -17,6 +17,8 @@ mkdir home/bin
 npm run browserify -- temp_bin/pages/home.js -o home/bin/bundle.js
 mkdir home/users/bin
 npm run browserify -- temp_bin/pages/users.js -o home/users/bin/bundle.js
+mkdir home/threads/bin
+npm run browserify -- temp_bin/pages/thread.js -o home/threads/bin/bundle.js
 
 rm -rf temp_bin
 

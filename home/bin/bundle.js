@@ -30397,6 +30397,15 @@ var Main = function Main() {
       null,
       React.createElement(
         'a',
+        { href: 'threads/index.html' },
+        'Home Thread'
+      )
+    ),
+    React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'a',
         { href: 'about/index.html' },
         'About'
       )

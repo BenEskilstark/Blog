@@ -10,7 +10,14 @@ const writeQuery = (table, row, pgClient) => {
   const valuesStr = toValuesStr(row);
   const queryStr = `INSERT INTO ${table} ${valuesStr}`;
   return queryPostgres(queryStr, 'write', pgClient);
-}
+};
+
+
+const deleteQuery = (table, filters, pgClient) => {
+  const filterStr = toFilterStr(filters);
+  const queryStr = `DELETE FROM ${table} ${filterStr}`;
+  return queryPostgres(queryStr, 'write', pgClient);
+};
 
 
 const selectQuery = (table, columns, filters, pgClient, orderBy) => {
@@ -18,7 +25,7 @@ const selectQuery = (table, columns, filters, pgClient, orderBy) => {
   const filterStr = toFilterStr(filters, orderBy);
   const queryStr = `${selectStr} ${filterStr}`;
   return queryPostgres(queryStr, 'readOnly', pgClient);
-}
+};
 
 
 const updateQuery = (table, row, filters, pgClient) => {
@@ -26,7 +33,8 @@ const updateQuery = (table, row, filters, pgClient) => {
   const filterStr = toFilterStr(filters);
   const queryStr = `UPDATE ${table} ${setStr} ${filterStr}`;
   return queryPostgres(queryStr, 'write', pgClient);
-}
+};
+
 
 // -------------------------------------------------------------------------
 // Helpers
@@ -133,4 +141,5 @@ module.exports = {
   writeQuery,
   selectQuery,
   updateQuery,
+  deleteQuery,
 }

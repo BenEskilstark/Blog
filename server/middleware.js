@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const {jwtSecret} = require('./config');;
+const {jwtSecret} = require('./config');
+const {selectQuery} = require('./dbUtils');
 
 // -------------------------------------------------------------------------
 // Middleware
@@ -22,16 +23,25 @@ const validJWTNeeded = (req, res, next) => {
   }
 };
 
-const minimumPermissionLevelRequired = (required_permission_level) => {
- return (req, res, next) => {
-   let user_permission_level = parseInt(req.jwt.permission_level);
-   let user_id = req.jwt.user_id;
-   if (user_permission_level & required_permission_level) {
-     return next();
-   } else {
-     return res.status(403).send({error: 'you don\'t have this permission'});
-   }
- };
+const minimumPermissionLevelRequired = (requiredPermissionLevel) => {
+  return (req, res, next) => {
+    if (requiredPermissionLevel == 0) return next();
+
+    const {username} = req.jwt;
+    selectQuery('blog_users', ['username', 'permissionlevel'], {username})
+      .then(result => {
+        if (result.rows.length == 1) {
+          const userPermissionLevel = result.rows[0].permissionlevel;
+          if (userPermissionLevel & requiredPermissionLevel) {
+            return next();
+          } else {
+            return res.status(403).send({error: 'you don\'t have this permission'});
+          }
+        } else {
+          res.status(400).send({error: 'No user with this username'});
+        }
+      });
+  };
 };
 
 module.exports = {
