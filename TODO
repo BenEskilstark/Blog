@@ -1,18 +1,20 @@
 
-- - - - - FRIDAY - - - - -
-  - make git
-    - ignore node_modules
+- - - - - MONDAY - - - - -
+  - need to handle fbclid query param
   - comments
     - comments page directory with this front end
+    - comment display at a /threads directory
     - comment creation UI
-    - comment display below posts
   - button for deleting comments available only to admin
 
 
 - - - - - FRONTEND - - - - -
+  - get iframe working on frontend to display post
+
+
+- - - - - CONTENT - - - - -
   - clone BenEskildsen.github.io
   - copy over relevant posts to here
-  - get iframe working on frontend to display post
   - pages:
     - about, contact,
 
@@ -22,12 +24,11 @@
 
 
 - - - - - NEXT - - - - -
-  - need to handle fbclid query
-  - GDPR disclaimer?
   - How to handle comments on outgoing links?
   - better styling for posts, home page
   - set up domain
   - deploy to heroku
+  - GDPR disclaimer?
 
 
 - - - - - WISH - - - - -
