@@ -31,7 +31,7 @@ users.post('/create', (req, res) => {
 
   writeQuery('blog_users', {username, password, permissionLevel: 1})
     .then(() => {
-      res.status(201).send({username});
+      res.status(201).send(getTokens(req));
     })
     .catch((err) => {
       res.status(500).send({error: 'failed to create user (probably duplicate username)'});
@@ -124,7 +124,7 @@ comments.get('/thread', [
 ]);
 comments.post('/comment', [
   validJWTNeeded,
-  // minimumPermissionLevelRequired(0),
+  minimumPermissionLevelRequired(0),
   postComment,
 ]);
 comments.post('/delete', [
@@ -138,7 +138,7 @@ comments.post('/delete', [
 // -------------------------------------------------------------------------
 const blog = express();
 blog.use(express.static('home'));
-blog.use('/users', users);
-blog.use('/threads', comments);
+blog.use('/blog', users);
+blog.use(['/blog', '/threads'], comments);
 console.log("server listening on port", port);
 blog.listen(port);

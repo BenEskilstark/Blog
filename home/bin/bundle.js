@@ -866,7 +866,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 }).call(this,require('_process'))
-},{"./adapters/http":2,"./adapters/xhr":2,"./helpers/normalizeHeaderName":23,"./utils":26,"_process":43}],17:[function(require,module,exports){
+},{"./adapters/http":2,"./adapters/xhr":2,"./helpers/normalizeHeaderName":23,"./utils":26,"_process":44}],17:[function(require,module,exports){
 'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -1751,7 +1751,7 @@ checkPropTypes.resetWarningCache = function() {
 module.exports = checkPropTypes;
 
 }).call(this,require('_process'))
-},{"./lib/ReactPropTypesSecret":29,"_process":43}],29:[function(require,module,exports){
+},{"./lib/ReactPropTypesSecret":29,"_process":44}],29:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -26781,7 +26781,7 @@ exports.version = ReactVersion;
 }
 
 }).call(this,require('_process'))
-},{"_process":43,"object-assign":27,"prop-types/checkPropTypes":28,"react":35,"scheduler":40,"scheduler/tracing":41}],31:[function(require,module,exports){
+},{"_process":44,"object-assign":27,"prop-types/checkPropTypes":28,"react":35,"scheduler":40,"scheduler/tracing":41}],31:[function(require,module,exports){
 /** @license React v16.13.1
  * react-dom.production.min.js
  *
@@ -27117,7 +27117,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/react-dom.development.js":30,"./cjs/react-dom.production.min.js":31,"_process":43}],33:[function(require,module,exports){
+},{"./cjs/react-dom.development.js":30,"./cjs/react-dom.production.min.js":31,"_process":44}],33:[function(require,module,exports){
 (function (process){
 /** @license React v16.13.1
  * react.development.js
@@ -29033,7 +29033,7 @@ exports.version = ReactVersion;
 }
 
 }).call(this,require('_process'))
-},{"_process":43,"object-assign":27,"prop-types/checkPropTypes":28}],34:[function(require,module,exports){
+},{"_process":44,"object-assign":27,"prop-types/checkPropTypes":28}],34:[function(require,module,exports){
 /** @license React v16.13.1
  * react.production.min.js
  *
@@ -29071,7 +29071,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/react.development.js":33,"./cjs/react.production.min.js":34,"_process":43}],36:[function(require,module,exports){
+},{"./cjs/react.development.js":33,"./cjs/react.production.min.js":34,"_process":44}],36:[function(require,module,exports){
 (function (process){
 /** @license React v0.19.1
  * scheduler-tracing.development.js
@@ -29424,7 +29424,7 @@ exports.unstable_wrap = unstable_wrap;
 }
 
 }).call(this,require('_process'))
-},{"_process":43}],37:[function(require,module,exports){
+},{"_process":44}],37:[function(require,module,exports){
 /** @license React v0.19.1
  * scheduler-tracing.production.min.js
  *
@@ -30298,7 +30298,7 @@ exports.unstable_wrapCallback = unstable_wrapCallback;
 }
 
 }).call(this,require('_process'))
-},{"_process":43}],39:[function(require,module,exports){
+},{"_process":44}],39:[function(require,module,exports){
 /** @license React v0.19.1
  * scheduler.production.min.js
  *
@@ -30332,7 +30332,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/scheduler.development.js":38,"./cjs/scheduler.production.min.js":39,"_process":43}],41:[function(require,module,exports){
+},{"./cjs/scheduler.development.js":38,"./cjs/scheduler.production.min.js":39,"_process":44}],41:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -30343,46 +30343,74 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/scheduler-tracing.development.js":36,"./cjs/scheduler-tracing.production.min.js":37,"_process":43}],42:[function(require,module,exports){
+},{"./cjs/scheduler-tracing.development.js":36,"./cjs/scheduler-tracing.production.min.js":37,"_process":44}],42:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+var Masthead = function Masthead() {
+  return React.createElement(
+    "div",
+    { className: "masthead" },
+    React.createElement(
+      "h1",
+      null,
+      React.createElement(
+        "a",
+        { href: "index.html" },
+        "benhub.io"
+      )
+    ),
+    React.createElement(
+      "a",
+      { href: "users/index.html" },
+      "Create User or Log In"
+    ),
+    React.createElement(
+      "a",
+      { href: "threads/index.html" },
+      "Home Thread"
+    ),
+    React.createElement(
+      "a",
+      { href: "about/index.html" },
+      "About"
+    ),
+    React.createElement(
+      "a",
+      { href: "blog/index.html" },
+      "Blog"
+    ),
+    React.createElement(
+      "a",
+      { href: "about/index.html" },
+      "Projects"
+    ),
+    React.createElement(
+      "a",
+      { href: "about/index.html" },
+      "Contact"
+    )
+  );
+};
+
+module.exports = Masthead;
+},{"react":35}],43:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var ReactDOM = require('react-dom');
 var axios = require('axios');
+var Masthead = require('../Masthead.react');
 var useEffect = React.useEffect,
     useState = React.useState;
 
 
 var Main = function Main() {
-
-  // useEffect(() => {
-  //   axios
-  //     .get('comments/thread', {
-  //       params: {thread: 'home'},
-  //       headers: {authorization: 'Bearer ' + localStorage.getItem('accessToken')},
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // });
-  // useEffect(() => {
-  //   axios.post('comments/thread',
-  //       {thread: 'home', username: 'bre', comment: 'shitpost'},
-  //       {headers: {authorization: 'Bearer ' + localStorage.getItem('accessToken')}},
-  //     )
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // });
   return React.createElement(
     'span',
     null,
+    React.createElement(Masthead, null),
     React.createElement(
       'div',
       null,
@@ -30409,12 +30437,30 @@ var Main = function Main() {
         { href: 'about/index.html' },
         'About'
       )
+    ),
+    React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'a',
+        { href: 'about/index.html' },
+        'Blog'
+      )
+    ),
+    React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'a',
+        { href: 'about/index.html' },
+        'Projects'
+      )
     )
   );
 };
 
 ReactDOM.render(React.createElement(Main, null), document.getElementById('container'));
-},{"axios":1,"react":35,"react-dom":32}],43:[function(require,module,exports){
+},{"../Masthead.react":42,"axios":1,"react":35,"react-dom":32}],44:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -30600,4 +30646,4 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[42]);
+},{}]},{},[43]);

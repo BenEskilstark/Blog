@@ -3,8 +3,8 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
 const axios = require('axios');
-const CommentCard = require('../components/CommentCard.react');
-const Composer = require('../components/Composer.react');
+const CommentCard = require('./CommentCard.react');
+const Composer = require('./Composer.react');
 const {useEffect, useState} = React;
 
 export type Props = {
@@ -12,6 +12,7 @@ export type Props = {
 };
 
 const Thread = (props: Props) => {
+  const {thread} = props;
 
   const [comments, setComments] = useState([]);
   const [staleCounter, setStale] = useState(0);
@@ -19,7 +20,7 @@ const Thread = (props: Props) => {
   useEffect(() => {
     axios
       .get('thread', {
-        params: {thread: 'home'},
+        params: {thread},
         // headers: {authorization: 'Bearer ' + localStorage.getItem('accessToken')},
       })
       .then((res) => {
@@ -34,13 +35,10 @@ const Thread = (props: Props) => {
   return (
     <span>
       {comments.map(c => (<CommentCard {...c} key={c.username + '_' + c.comment} />))}
-      <Composer thread={'home'} onSubmit={() => setStale(staleCounter + 1)} />
+      <Composer thread={thread} onSubmit={() => setStale(staleCounter + 1)} />
     </span>
   );
 }
 
-ReactDOM.render(
-  <Thread />,
-  document.getElementById('container'),
-);
+module.exports = Thread;
 

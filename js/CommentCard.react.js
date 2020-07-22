@@ -1,7 +1,7 @@
 // @flow
 
 const axios = require('axios');
-const Button = require('./Button.react');
+const Button = require('./components/Button.react');
 const React = require('react');
 const {useState} = React;
 
