@@ -1,41 +1,26 @@
 
-- - - - - WEDNESDAY - - - - -
-  - settle on masthead layout
-  - button styling
+- - - - - THURSDAY - - - - -
   - comments
-    - make composer look better
     - make composer responsive
+  - fix sql injection of apostrophes, etc. in comments
+  - rename master branch to prod
+  - family-specifc page
+    - validation middleware to get the thread
     - update comment thread when another user posts a comment
       (fetching updates should be a prop that family thread passes)
-  - login modal
-    - better styling for X out
-    - better positioning for login button
-  - rename Ben's Blog title in all the index.html's
-  - fix masthead links for each page
-  - fix sql injection of apostrophes, etc. in comments
-  - set up the rest of the blog posts to work w/masthead + comment thread
+  - add masthead to (and fix back link):
+    - compositions
+    - postmodern pong
+    - fourier toy
+    - cellular automata
+    - conic sections
+    - 3D ants
 
 
 - - - - - FRONTEND - - - - -
 
 
 - - - - - CONTENT - - - - -
-  - pages:
-    - about
-    - contact
-    - blog
-      - book reviews
-      - older essays?
-    - projects
-      - all games
-      - 3D ants
-      - fractal generator
-      - life lava lamp, hanging gardens
-      - Pollock Painter
-      - CA explorer
-      - conic sections
-    - family-specifc page
-      - validation middleware to get the thread
 
 
 - - - - - BACKEND - - - - -
@@ -46,9 +31,8 @@
   - How to handle logging users out
     - update secret string with current date?
     - use iat to invalidate tokens?
-  - better styling for posts, home page
-  - deploy to heroku
   - GDPR disclaimer?
+  - meta descriptions and img previews
 
 
 - - - - - WISH - - - - -
@@ -61,4 +45,5 @@
 
 
 - - - - - INLINE - - - - -
+js/Masthead.react.js:// TODO: masthead should take prop for href relative to
 server/dbUtils.js:  // TODO: can you connect/end the same client multiple times?

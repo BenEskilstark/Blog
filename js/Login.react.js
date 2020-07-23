@@ -25,27 +25,10 @@ const LoginModal = (props: Props) => {
   return (
     <div
       style={{
-        position: 'fixed',
-        margin: 'auto',
-        backgroundColor: 'white',
-        maxWidth: 300,
-        left: '50%',
-        top: '50%',
-        marginLeft: '-150px',
-        marginTop: '-175px',
         textAlign: 'center',
         padding: '16px',
       }}
     >
-      <Button
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-        }}
-        label="X"
-        onClick={props.login}
-      />
       <div>
         <h2 style={{marginTop: 0}} >Create User:</h2>
         <div>
@@ -66,6 +49,7 @@ const LoginModal = (props: Props) => {
         <div><b>{createMessage}</b></div>
         <Button
           label="Create User"
+          style={{margin: '4px auto', width: '60%'}}
           onClick={() => {
             axios
               .post('create', {username: createUsername, password: createPassword})
@@ -102,6 +86,7 @@ const LoginModal = (props: Props) => {
         <div><b>{loginMessage}</b></div>
         <Button
           label="Login"
+          style={{margin: '4px auto', width: '60%'}}
           onClick={() => {
             axios.post('login', {username, password})
               .then((res) => {

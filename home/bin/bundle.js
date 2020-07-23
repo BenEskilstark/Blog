@@ -866,7 +866,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 }).call(this,require('_process'))
-},{"./adapters/http":2,"./adapters/xhr":2,"./helpers/normalizeHeaderName":23,"./utils":26,"_process":44}],17:[function(require,module,exports){
+},{"./adapters/http":2,"./adapters/xhr":2,"./helpers/normalizeHeaderName":23,"./utils":26,"_process":45}],17:[function(require,module,exports){
 'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -1751,7 +1751,7 @@ checkPropTypes.resetWarningCache = function() {
 module.exports = checkPropTypes;
 
 }).call(this,require('_process'))
-},{"./lib/ReactPropTypesSecret":29,"_process":44}],29:[function(require,module,exports){
+},{"./lib/ReactPropTypesSecret":29,"_process":45}],29:[function(require,module,exports){
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -26781,7 +26781,7 @@ exports.version = ReactVersion;
 }
 
 }).call(this,require('_process'))
-},{"_process":44,"object-assign":27,"prop-types/checkPropTypes":28,"react":35,"scheduler":40,"scheduler/tracing":41}],31:[function(require,module,exports){
+},{"_process":45,"object-assign":27,"prop-types/checkPropTypes":28,"react":35,"scheduler":40,"scheduler/tracing":41}],31:[function(require,module,exports){
 /** @license React v16.13.1
  * react-dom.production.min.js
  *
@@ -27117,7 +27117,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/react-dom.development.js":30,"./cjs/react-dom.production.min.js":31,"_process":44}],33:[function(require,module,exports){
+},{"./cjs/react-dom.development.js":30,"./cjs/react-dom.production.min.js":31,"_process":45}],33:[function(require,module,exports){
 (function (process){
 /** @license React v16.13.1
  * react.development.js
@@ -29033,7 +29033,7 @@ exports.version = ReactVersion;
 }
 
 }).call(this,require('_process'))
-},{"_process":44,"object-assign":27,"prop-types/checkPropTypes":28}],34:[function(require,module,exports){
+},{"_process":45,"object-assign":27,"prop-types/checkPropTypes":28}],34:[function(require,module,exports){
 /** @license React v16.13.1
  * react.production.min.js
  *
@@ -29071,7 +29071,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/react.development.js":33,"./cjs/react.production.min.js":34,"_process":44}],36:[function(require,module,exports){
+},{"./cjs/react.development.js":33,"./cjs/react.production.min.js":34,"_process":45}],36:[function(require,module,exports){
 (function (process){
 /** @license React v0.19.1
  * scheduler-tracing.development.js
@@ -29424,7 +29424,7 @@ exports.unstable_wrap = unstable_wrap;
 }
 
 }).call(this,require('_process'))
-},{"_process":44}],37:[function(require,module,exports){
+},{"_process":45}],37:[function(require,module,exports){
 /** @license React v0.19.1
  * scheduler-tracing.production.min.js
  *
@@ -30298,7 +30298,7 @@ exports.unstable_wrapCallback = unstable_wrapCallback;
 }
 
 }).call(this,require('_process'))
-},{"_process":44}],39:[function(require,module,exports){
+},{"_process":45}],39:[function(require,module,exports){
 /** @license React v0.19.1
  * scheduler.production.min.js
  *
@@ -30332,7 +30332,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/scheduler.development.js":38,"./cjs/scheduler.production.min.js":39,"_process":44}],41:[function(require,module,exports){
+},{"./cjs/scheduler.development.js":38,"./cjs/scheduler.production.min.js":39,"_process":45}],41:[function(require,module,exports){
 (function (process){
 'use strict';
 
@@ -30343,34 +30343,257 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 }).call(this,require('_process'))
-},{"./cjs/scheduler-tracing.development.js":36,"./cjs/scheduler-tracing.production.min.js":37,"_process":44}],42:[function(require,module,exports){
+},{"./cjs/scheduler-tracing.development.js":36,"./cjs/scheduler-tracing.production.min.js":37,"_process":45}],42:[function(require,module,exports){
+'use strict';
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var useState = React.useState,
+    useEffect = React.useEffect,
+    useMemo = React.useMemo;
+
+
+var greenConfig = {
+  gridWidth: 60,
+  gridHeight: 85,
+  msPerTick: 100,
+  liveMin: 2, // if alive, must have at least this many live neighbors to stay alive
+  liveMax: 5, // if alive, must have at most this many live neighbors to stay alive
+  deadMin: 3, // if dead, must have at least this many live neighbors to become alive
+  deadMax: 3, // if dead, must have at most this many live neighbors to become alive
+  noiseRate: 0.2,
+  backgroundColor: 'black',
+  cellColor: '#6B8E23',
+  decayRate: 0.06,
+  onClick: function onClick(ev) {
+    var cellWidth = width / config.gridWidth;
+    var cellHeight = height / config.gridHeight;
+    var gridX = Math.floor(ev.clientX / cellWidth);
+    var gridY = Math.floor(ev.clientY / cellHeight);
+    grid[gridX][gridY] = 1;
+  },
+  noiseFn: function noiseFn(x, y, width, height, noiseRate, nextAlive) {
+    if (y == 0 && Math.random() < noiseRate
+    // y == 2 && Math.random() < noiseRate / 2
+    ) {
+        return 1;
+      }
+    return nextAlive;
+  }
+};
+
+var redConfig = {
+  gridWidth: 50,
+  gridHeight: 70,
+  msPerTick: 100,
+  liveMin: 2, // if alive, must have at least this many live neighbors to stay alive
+  liveMax: 3, // if alive, must have at most this many live neighbors to stay alive
+  deadMin: 2, // if dead, must have at least this many live neighbors to become alive
+  deadMax: 3, // if dead, must have at most this many live neighbors to become alive
+  noiseRate: 0.4,
+  backgroundColor: 'black',
+  cellColor: 'red',
+  decayRate: 0.01,
+  onClick: function onClick(ev) {
+    var cellWidth = width / config.gridWidth;
+    var cellHeight = height / config.gridHeight;
+    var gridX = Math.floor(ev.clientX / cellWidth);
+    var gridY = Math.floor(ev.clientY / cellHeight);
+    grid[gridX][gridY] = 1;
+  },
+  noiseFn: function noiseFn(x, y, width, height, noiseRate, nextAlive) {
+    if (y == height - 1 && Math.random() < noiseRate || y == height - 2 && Math.random() < noiseRate / 2) {
+      return 1;
+    }
+    return nextAlive;
+  }
+};
+
+var blueConfig = {
+  gridWidth: 50,
+  gridHeight: 70,
+  msPerTick: 100,
+  liveMin: 1, // if alive, must have at least this many live neighbors to stay alive
+  liveMax: 2, // if alive, must have at most this many live neighbors to stay alive
+  deadMin: 3, // if dead, must have at least this many live neighbors to become alive
+  deadMax: 3, // if dead, must have at most this many live neighbors to become alive
+  noiseRate: 0.4,
+  backgroundColor: '#d2691E',
+  cellColor: '#2c3e50',
+  decayRate: 0.05,
+  noiseFn: function noiseFn(x, y, width, height, noiseRate, nextAlive) {
+    if (y == 0 && Math.random() < noiseRate || y == 1 && Math.random() < noiseRate / 2 || x == 0 && Math.random() < noiseRate || x == 1 && Math.random() < noiseRate / 2 || y == height - 8 && Math.random() < noiseRate || y == height - 9 && Math.random() < noiseRate / 2 || x == width - 1 && Math.random() < noiseRate || x == width - 2 && Math.random() < noiseRate / 2) {
+      return 1;
+    }
+    return nextAlive;
+  }
+};
+
+function Automata(props) {
+  // const {config} = props;
+  var _document$getElementB = document.getElementById('container').getBoundingClientRect(),
+      width = _document$getElementB.width,
+      height = _document$getElementB.height;
+
+  height -= 145;
+
+  var _useState = useState(function () {
+    return _extends({}, blueConfig, {
+      gridWidth: width > height ? blueConfig.gridHeight : blueConfig.gridWidth,
+      gridHeight: width > height ? blueConfig.gridWidth : blueConfig.gridHeight
+    });
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      config = _useState2[0],
+      setConfig = _useState2[1];
+
+  var _useState3 = useState(initGrid(config.gridWidth, config.gridHeight)),
+      _useState4 = _slicedToArray(_useState3, 2),
+      grid = _useState4[0],
+      setGrid = _useState4[1];
+
+  useEffect(function () {
+    var interval = setInterval(function () {
+      setGrid(function (grid) {
+        return advanceGrid(grid, config);
+      });
+    }, config.msPerTick);
+    return function () {
+      return clearInterval(interval);
+    };
+  }, [config.gridWidth]);
+
+  var cells = [];
+  for (var x = 0; x < config.gridWidth; x++) {
+    for (var y = 0; y < config.gridHeight; y++) {
+      cells.push(React.createElement(Cell, {
+        key: 'cell_' + x + '_' + y,
+        config: config,
+        x: x, y: y, alive: grid[x][y]
+      }));
+    }
+  }
+
+  return React.createElement(
+    'div',
+    {
+      style: {
+        width: width,
+        height: height,
+        backgroundColor: config.backgroundColor,
+        position: 'relative'
+      },
+      onClick: function onClick(ev) {
+        var cellWidth = width / config.gridWidth;
+        var cellHeight = height / config.gridHeight;
+        var gridX = Math.floor(ev.clientX / cellWidth);
+        var gridY = Math.floor((ev.clientY - 145) / (cellHeight + 2));
+        grid[gridX][gridY] = 1;
+      }
+    },
+    cells
+  );
+}
+
+function Cell(props) {
+  var x = props.x,
+      y = props.y,
+      alive = props.alive,
+      config = props.config;
+
+  var _document$getElementB2 = document.getElementById('container').getBoundingClientRect(),
+      width = _document$getElementB2.width,
+      height = _document$getElementB2.height;
+
+  var gridWidth = config.gridWidth,
+      gridHeight = config.gridHeight,
+      cellColor = config.cellColor;
+
+
+  var cellWidth = width / gridWidth;
+  var cellHeight = height / gridHeight;
+  // const backgroundColor = 'rgba(255, 0, 0, ' + alive + ')';
+  var color = cellColor;
+  return React.createElement('div', {
+    style: {
+      position: 'absolute',
+      backgroundColor: color,
+      top: cellHeight * y - 1,
+      left: cellWidth * x - 1,
+      width: cellWidth + 2,
+      height: cellHeight + 2,
+      opacity: alive
+    }
+  });
+}
+
+function advanceGrid(grid, config) {
+  // const width = grid.length;
+  // const height = grid[0].length;
+  var width = config.gridWidth;
+  var height = config.gridHeight;
+  var nextGrid = [];
+  for (var x = 0; x < width; x++) {
+    var nextCol = [];
+    for (var y = 0; y < height; y++) {
+      var alive = grid[x][y];
+      var numAliveNeighbors = getNumAliveNeighbors(grid, x, y);
+      var nextAlive = alive;
+      if (alive == 1) {
+        nextAlive = numAliveNeighbors < config.liveMin || numAliveNeighbors > config.liveMax ? alive - config.decayRate : 1;
+      } else {
+        nextAlive = numAliveNeighbors < config.deadMin || numAliveNeighbors > config.deadMax ? alive - config.decayRate : 1;
+      }
+      // Noise
+      nextAlive = config.noiseFn(x, y, width, height, config.noiseRate, nextAlive);
+      nextCol.push(Math.max(0, nextAlive));
+    }
+    nextGrid.push(nextCol);
+  }
+
+  return nextGrid;
+}
+
+function initGrid(width, height) {
+  var grid = [];
+  for (var x = 0; x < width; x++) {
+    var col = [];
+    for (var y = 0; y < height; y++) {
+      col.push(0);
+    }
+    grid.push(col);
+  }
+  return grid;
+}
+
+function getNumAliveNeighbors(grid, x, y) {
+  var sum = 0;
+  for (var i = -1; i <= 1; i++) {
+    for (var j = -1; j <= 1; j++) {
+      if (i == 0 && j == 0) continue;
+      if (x + i >= grid.length || y + j >= grid[x].length) continue;
+      if (x + i < 0 || y + j < 0) continue;
+      sum += grid[x + i][y + j] == 1 ? 1 : 0;
+    }
+  }
+  return sum;
+}
+
+module.exports = Automata;
+},{"react":35,"react-dom":32}],43:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
 
-var Masthead = function Masthead() {
-  return React.createElement(
+// TODO: masthead should take prop for href relative to
+var Masthead = function Masthead(props) {
+  var links = React.createElement(
     "div",
-    { className: "masthead" },
-    React.createElement(
-      "h1",
-      null,
-      React.createElement(
-        "a",
-        { href: "index.html" },
-        "benhub.io"
-      )
-    ),
-    React.createElement(
-      "a",
-      { href: "users/index.html" },
-      "Create User or Log In"
-    ),
-    React.createElement(
-      "a",
-      { href: "threads/index.html" },
-      "Home Thread"
-    ),
+    null,
     React.createElement(
       "a",
       { href: "about/index.html" },
@@ -30383,84 +30606,115 @@ var Masthead = function Masthead() {
     ),
     React.createElement(
       "a",
-      { href: "about/index.html" },
+      { href: "projects/index.html" },
       "Projects"
     ),
     React.createElement(
       "a",
-      { href: "about/index.html" },
+      { href: "contact/index.html" },
       "Contact"
     )
+  );
+  return React.createElement(
+    "div",
+    { className: "masthead" },
+    React.createElement(
+      "h1",
+      null,
+      React.createElement(
+        "a",
+        { href: "index.html" },
+        "benhub.io"
+      )
+    ),
+    props.hideLinks ? null : links
   );
 };
 
 module.exports = Masthead;
-},{"react":35}],43:[function(require,module,exports){
+},{"react":35}],44:[function(require,module,exports){
 'use strict';
 
 var React = require('react');
 var ReactDOM = require('react-dom');
 var axios = require('axios');
 var Masthead = require('../Masthead.react');
+var Automata = require('../Automata.react');
 var useEffect = React.useEffect,
     useState = React.useState;
 
 
 var Main = function Main() {
   return React.createElement(
-    'span',
-    null,
-    React.createElement(Masthead, null),
+    'div',
+    {
+      style: {
+        position: 'fixed',
+        overflow: 'hidden',
+        margin: '0',
+        height: '100%'
+      }
+    },
+    React.createElement(Masthead, { hideLinks: true }),
+    React.createElement(Automata, null),
     React.createElement(
       'div',
-      null,
+      { style: {
+          position: 'fixed',
+          backgroundColor: 'white',
+          top: '40%',
+          padding: '2px',
+          paddingRight: '10px',
+          left: '50%',
+          borderRadius: '2px',
+          boxShadow: 'inset -0.3em -0.3em 0.5em rgba(0,0,0,0.3)',
+          fontSize: '2em',
+          textAlign: 'center',
+          width: 120,
+          marginLeft: '-60px'
+        } },
       React.createElement(
-        'a',
-        { href: 'users/index.html' },
-        'Create User or Log In'
-      )
-    ),
-    React.createElement(
-      'div',
-      null,
+        'div',
+        { style: { marginLeft: '8px', marginBottom: '8px' } },
+        React.createElement(
+          'a',
+          { href: 'about/index.html' },
+          'About'
+        )
+      ),
       React.createElement(
-        'a',
-        { href: 'threads/index.html' },
-        'Home Thread'
-      )
-    ),
-    React.createElement(
-      'div',
-      null,
+        'div',
+        { style: { marginLeft: '8px', marginBottom: '8px' } },
+        React.createElement(
+          'a',
+          { href: 'blog/index.html' },
+          'Blog'
+        )
+      ),
       React.createElement(
-        'a',
-        { href: 'about/index.html' },
-        'About'
-      )
-    ),
-    React.createElement(
-      'div',
-      null,
+        'div',
+        { style: { marginLeft: '8px', marginBottom: '8px' } },
+        React.createElement(
+          'a',
+          { href: 'projects/index.html' },
+          'Projects'
+        )
+      ),
       React.createElement(
-        'a',
-        { href: 'about/index.html' },
-        'Blog'
-      )
-    ),
-    React.createElement(
-      'div',
-      null,
-      React.createElement(
-        'a',
-        { href: 'about/index.html' },
-        'Projects'
+        'div',
+        { style: { marginLeft: '8px', marginBottom: '8px' } },
+        React.createElement(
+          'a',
+          { href: 'contact/index.html' },
+          'Contact'
+        )
       )
     )
   );
 };
 
 ReactDOM.render(React.createElement(Main, null), document.getElementById('container'));
-},{"../Masthead.react":42,"axios":1,"react":35,"react-dom":32}],44:[function(require,module,exports){
+},{"../Automata.react":42,"../Masthead.react":43,"axios":1,"react":35,"react-dom":32}],45:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -30646,4 +30900,4 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[43]);
+},{}]},{},[44]);

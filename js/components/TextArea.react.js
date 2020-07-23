@@ -14,7 +14,7 @@ const TextArea = (props) => {
   const style = props.style != null ? props.style : {};
 
   const defaultRows = 4;
-  const defaultCols = 80;
+  const defaultCols = 60;
 
   return (
     <textarea

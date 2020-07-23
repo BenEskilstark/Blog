@@ -3,7 +3,7 @@
 const axios = require('axios');
 const React = require('react');
 const Button = require('./components/Button.react');
-const TextField = require('./components/TextArea.react');
+const TextArea = require('./components/TextArea.react');
 const LoginModal = require('./Login.react.js');
 const {useEffect, useState} = React;
 
@@ -35,26 +35,41 @@ const Composer = (props: Props): React.Node => {
   const [comment, setComment] = useState('');
   const [loginModal, setLoginModal] = useState(null);
 
+  let usernameLabel = (<span>
+    Commenting as: <b>{username}</b>
+  </span>);
+  if (username == null) {
+    usernameLabel = (<span>
+      Log in or create account to comment
+    </span>);
+  }
+
   return (
     <div style={COMPOSER_STYLE}>
-      {loginModal}
       <div style={HEADER_STYLE}>
-        Posting as: <b>{username}</b>
+        {usernameLabel}
       </div>
-      <TextField
+      <TextArea
         style={BODY_STYLE}
         value={comment}
         onChange={setComment}
       />
       <div style={FOOTER_STYLE}>
         <Button
+          style={{
+            width: '48%', display: 'inline',
+            color: 'rgba(0, 0, 0,' + (username == null ? '0.5' : '0.1') + ')',
+          }}
           label="Log in"
           onClick={() => setLoginModal(<LoginModal login={() => setLoginModal(null)}/>)}
         />
         <Button
-          style={{float: 'right'}}
+          style={{
+            float: 'right', width: '48%',
+            color: 'rgba(0, 0, 0,' + (username != null ? '0.5' : '0.1') + ')',
+          }}
           disabled={username == null}
-          label={username != null ? 'Submit Comment' : 'Must Log In to Comment'}
+          label={username != null ? 'Submit Comment' : 'Log In to Post'}
           onClick={() => {
             if (comment == '') return;
             axios
@@ -71,6 +86,7 @@ const Composer = (props: Props): React.Node => {
               });
           }}
         />
+        {loginModal}
       </div>
     </div>
   );

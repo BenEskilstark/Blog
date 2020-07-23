@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv='Content-type' content='text/html; charset=utf-8'>
+    <title>Ant Simulator</title>
+    <link rel="stylesheet" type="text/css" href="css/ants.css">
+  </head>
+  <body>
+  	<script src="js/ant.js"></script>
+    <script src="js/world.js"></script>
+    <script src="js/shaders.js"></script>
+    <script src="js/trackball.js"></script>
+    <script src="js/3D/spidergl.js"></script>
+    <script src="js/3D/spidergl-config.js"></script>
+    <script src="js/3D/cube.js"></script>
+    <script src="js/3D/sphere_latlong.js"></script>
+    <script src="js/3D/cylinder.js"></script>
+    <script src="js/3D/character.js"></script>
+    <script src="js/simulation.js"></script>
+    <script src="js/main.js"></script>
+
+    <div class="left-column">
+        <div class="menu">
+            <b>Global Simulation Parameters</b>
+            <br>(After changing things in this box you must restart the simulation)<br>
+            <input type="button" id="start" onClick="simulation=main(simulation)" value="Start">
+            <input type="button" onClick="toggleSimulation(simulation)" id="toggle" value="Pause">
+            <br><br><b>Simulation Dimensions</b>
+            <br>
+            X: <input type="number" min="1" max="1000" id="width" value="30">
+            Y: <input type="number" min="1" max="1000" id="height" value="50">
+            Z: <input type="number" min="1" max="1000" id="depth" value="30"><br>
+            <br>Number of Ants: <input type="number" min="1" max="100" id="numAnts" value="25">
+            <br>Depth of Dirt:  <input type="number" min="1" max="100" id="numDirt" value="40">
+        </div>
+
+        <div class="menu">
+            <b>Current Settings</b>
+
+            <br><b>Simulation Speed</b>
+            <input type="range" min="60" max="100" id="speed" value="95">
+
+            <br><b>Ant Resolution</b>
+            <input type="range" min="0" max="1" id="antResolution" value="1">
+
+            <br><b>Toggle Dirt</b>
+            <input type="range" min="0" max="1" id="toggleDirt" value="1">
+
+            <br><b>Toggle Surface Dirt</b>
+            <input type="range" min="0" max="1" id="toggleSurfaceDirt" value="1">
+
+            <br><br>Clear Dirt off the surface:
+            <input type="button" value="Clear" onclick="clearDirt()">
+        </div>
+
+        <div class="menu">
+            <b>Spawn Food Source</b>
+            <br><b>Food Density (1 - 500):</b>
+            <input type="range" min="1" max="500" id="foodDensity" value="100"><br>
+            <input type="button" value="Spawn" onclick="spawnFood()">
+        </div>
+
+    </div>
+
+    <div class="center-column">
+        <canvas id="canvas" width="700" height="500"> </canvas>
+    </div>
+
+    <div class="right-column">
+        <div class="menu">
+            <b>Colony Behavior Settings:</b>
+
+            <br><br><b>Expected Task Proportions</b>
+            <br>(Make sure these sum to 100%)
+            <br>Scout for Food:
+            <input type="number" id="scoutForFood" value="25">%
+            <br>Retrieve Food:
+            <input type="number" id="returnFood" value="50">%
+            <br>Dig Tunnel:
+            <input type="number" id="digTunnel" value="25">%
+            <br>Dig Chamber:
+            <input type="number" id="digChamber" value="0">%
+
+            <br><br><b>Task switching threshold</b>
+            <br>(How different the expected and measured proportions need to be to switch)
+            <input type="number" id="threshold" min="0" max="100" value="10">
+        </div>
+
+        <div class="menu">
+            <b>Colony Stats:</b>
+
+            <br><br>Total Food Retrieved:
+            <input type="number" id="totalFood" value=0 disabled>
+
+            <br><br>Scouting:
+            <input type="number" id="percentScouting" value=0 disabled>%
+            <br>Retrieving:
+            <input type="number" id="percentRetrieving" value=0 disabled>%
+            <br>Digging Tunnels:
+            <input type="number" id="percentDiggingTunnels" value=0 disabled>%
+            <br>Digging Chambers:
+            <input type="number" id="percentDiggingChambers" value=0 disabled>%
+        </div>
+    </div>
+  </body>
+</html>

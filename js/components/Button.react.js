@@ -27,7 +27,7 @@ class Button extends React.Component {
           ...props.style,
         }}
         key={id || label}
-        className={props.disabled ? 'buttonDisable' : ''}
+        className={'fancyButton'}
         id={id.toUpperCase() + '_button'}
         onClick={props.disabled ? () => {} : props.onClick}
         onTouchStart={props.onMouseDown}

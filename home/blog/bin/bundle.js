@@ -30432,7 +30432,7 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 var axios = require('axios');
 var React = require('react');
 var Button = require('./components/Button.react');
-var TextField = require('./components/TextArea.react');
+var TextArea = require('./components/TextArea.react');
 var LoginModal = require('./Login.react.js');
 var useEffect = React.useEffect,
     useState = React.useState;
@@ -30464,21 +30464,33 @@ var Composer = function Composer(props) {
       loginModal = _useState4[0],
       setLoginModal = _useState4[1];
 
+  var usernameLabel = React.createElement(
+    'span',
+    null,
+    'Commenting as: ',
+    React.createElement(
+      'b',
+      null,
+      username
+    )
+  );
+  if (username == null) {
+    usernameLabel = React.createElement(
+      'span',
+      null,
+      'Log in or create account to comment'
+    );
+  }
+
   return React.createElement(
     'div',
     { style: COMPOSER_STYLE },
-    loginModal,
     React.createElement(
       'div',
       { style: HEADER_STYLE },
-      'Posting as: ',
-      React.createElement(
-        'b',
-        null,
-        username
-      )
+      usernameLabel
     ),
-    React.createElement(TextField, {
+    React.createElement(TextArea, {
       style: BODY_STYLE,
       value: comment,
       onChange: setComment
@@ -30487,6 +30499,10 @@ var Composer = function Composer(props) {
       'div',
       { style: FOOTER_STYLE },
       React.createElement(Button, {
+        style: {
+          width: '48%', display: 'inline',
+          color: 'rgba(0, 0, 0,' + (username == null ? '0.5' : '0.1') + ')'
+        },
         label: 'Log in',
         onClick: function onClick() {
           return setLoginModal(React.createElement(LoginModal, { login: function login() {
@@ -30495,9 +30511,12 @@ var Composer = function Composer(props) {
         }
       }),
       React.createElement(Button, {
-        style: { float: 'right' },
+        style: {
+          float: 'right', width: '48%',
+          color: 'rgba(0, 0, 0,' + (username != null ? '0.5' : '0.1') + ')'
+        },
         disabled: username == null,
-        label: username != null ? 'Submit Comment' : 'Must Log In to Comment',
+        label: username != null ? 'Submit Comment' : 'Log In to Post',
         onClick: function onClick() {
           if (comment == '') return;
           axios.post('comment', { thread: thread, username: username, comment: comment }, { headers: { authorization: 'Bearer ' + localStorage.getItem('accessToken') } }).then(function (res) {
@@ -30507,7 +30526,8 @@ var Composer = function Composer(props) {
             console.log(err);
           });
         }
-      })
+      }),
+      loginModal
     )
   );
 };
@@ -30563,33 +30583,16 @@ var LoginModal = function LoginModal(props) {
     'div',
     {
       style: {
-        position: 'fixed',
-        margin: 'auto',
-        backgroundColor: 'white',
-        maxWidth: 300,
-        left: '50%',
-        top: '50%',
-        marginLeft: '-150px',
-        marginTop: '-175px',
         textAlign: 'center',
         padding: '16px'
       }
     },
-    React.createElement(Button, {
-      style: {
-        position: 'absolute',
-        top: 0,
-        left: 0
-      },
-      label: 'X',
-      onClick: props.login
-    }),
     React.createElement(
       'div',
       null,
       React.createElement(
         'h2',
-        { style: { paddingTop: 0 } },
+        { style: { marginTop: 0 } },
         'Create User:'
       ),
       React.createElement(
@@ -30622,6 +30625,7 @@ var LoginModal = function LoginModal(props) {
       ),
       React.createElement(Button, {
         label: 'Create User',
+        style: { margin: '4px auto', width: '60%' },
         onClick: function onClick() {
           axios.post('create', { username: createUsername, password: createPassword }).then(function (res) {
             setCreateMessage('Successfully created: ' + res.data.username);
@@ -30675,6 +30679,7 @@ var LoginModal = function LoginModal(props) {
       ),
       React.createElement(Button, {
         label: 'Login',
+        style: { margin: '4px auto', width: '60%' },
         onClick: function onClick() {
           axios.post('login', { username: username, password: password }).then(function (res) {
             setLoginMessage('Logged in as ' + username);
@@ -30725,8 +30730,8 @@ var Thread = function Thread(props) {
 
   useEffect(function () {
     axios.get('thread', {
-      params: { thread: thread }
-      // headers: {authorization: 'Bearer ' + localStorage.getItem('accessToken')},
+      params: { thread: thread },
+      headers: { authorization: 'Bearer ' + localStorage.getItem('accessToken') }
     }).then(function (res) {
       res.data.sort(function (c1, c2) {
         return new Date(c1.createdat) - new Date(c2.createdat);
@@ -30803,7 +30808,7 @@ var Button = function (_React$Component) {
             fontSize: '18px'
           }, props.style),
           key: id || label,
-          className: props.disabled ? 'buttonDisable' : '',
+          className: 'fancyButton',
           id: id.toUpperCase() + '_button',
           onClick: props.disabled ? function () {} : props.onClick,
           onTouchStart: props.onMouseDown,
@@ -30861,7 +30866,7 @@ var TextArea = function TextArea(props) {
   var style = props.style != null ? props.style : {};
 
   var defaultRows = 4;
-  var defaultCols = 80;
+  var defaultCols = 60;
 
   return React.createElement('textarea', {
     style: style,
@@ -30924,7 +30929,7 @@ var Blog = function Blog() {
     'div',
     {
       style: {
-        marginBottom: 200
+        marginBottom: 500
       }
     },
     React.createElement(

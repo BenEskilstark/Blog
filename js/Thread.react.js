@@ -21,7 +21,7 @@ const Thread = (props: Props) => {
     axios
       .get('thread', {
         params: {thread},
-        // headers: {authorization: 'Bearer ' + localStorage.getItem('accessToken')},
+        headers: {authorization: 'Bearer ' + localStorage.getItem('accessToken')},
       })
       .then((res) => {
         res.data.sort((c1, c2) => new Date(c1.createdat) - new Date(c2.createdat));

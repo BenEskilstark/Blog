@@ -10,7 +10,7 @@ const Blog = () => {
   return (
     <div
       style={{
-        marginBottom: 200,
+        marginBottom: 500,
       }}
     >
       <h2>Comments:</h2>

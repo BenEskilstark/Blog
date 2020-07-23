@@ -15,10 +15,33 @@ body {
   overflow: hidden;
   position: relative;
   touch-action: none;
+  height: 100%;
 }
 
 h3 {
   margin-top: 0;
+}
+
+.fancyButton {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    margin-top: 5px;
+    width: 100%;
+    display: block;
+    color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #C1C1C1;
+    background: rgba(158,158,158,.1);
+    border-radius: 3px;
+    padding: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: background 0.3s linear;
+    cursor: pointer;
+    outline: none;
+}
+
+.fancyButton:hover {
+    background: rgba(158,158,158,.3);
+    color: rgba(0, 0, 0, 0.6);
 }
 
 /* ---------------------------------------------
@@ -29,6 +52,7 @@ h3 {
   width: 100%;
   background-color: #2c3e50;
   padding-bottom: 4px;
+  box-shadow: 0 0.3em 0.3em rgba(0, 0, 0, 0.5);
 }
 
 .masthead h1 {
@@ -36,9 +60,27 @@ h3 {
   font-size: 4em;
   width: 1000px;
   margin: 0 auto;
-  padding-top: 40px;
+  padding-top: 50px;
+  padding-bottom: 16px;
   padding-left: 12px;
   font-family: "Courier New", sans-serif;
+}
+
+.masthead div {
+  background-color: white;
+  position: absolute;
+  top: 24px;
+  padding: 2px;
+  padding-right: 10px;
+  right: 16px;
+  border-radius: 2px;
+  box-shadow: inset -0.3em -0.3em 0.5em rgba(0,0,0,0.3);
+}
+
+.masthead a {
+  display: block;
+  margin-left: 8px;
+  margin-bottom: 4px;
 }
 
 h1 a {
@@ -46,16 +88,19 @@ h1 a {
  text-decoration: none;
 }
 
-.masthead a {
-  /* background-color: white; */
-  margin-left: 8px;
-  margin-bottom: 4px;
-}
-
 /* ---------------------------------------------
  * Blog Content
  * --------------------------------------------- */
 
+#maincontent {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 800px;
+	color: #555555;
+	font: helvetica;
+	font-size: 14pt;
+  overflow: scroll;
+}
 .maincontent {
 	margin-left: auto;
 	margin-right: auto;
