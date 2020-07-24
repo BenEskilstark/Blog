@@ -61,9 +61,16 @@ h3 {
   width: 1000px;
   margin: 0 auto;
   padding-top: 50px;
-  padding-bottom: 16px;
+  padding-bottom: 32px;
   padding-left: 12px;
   font-family: "Courier New", sans-serif;
+}
+
+@media (max-width: 700px) {
+  .masthead h1 {
+    font-size: 2em;
+    padding-bottom: 64px;
+  }
 }
 
 .masthead div {
@@ -95,6 +102,7 @@ h1 a {
 
 #maincontent {
 	margin-left: auto;
+  padding-left: 4px;
 	margin-right: auto;
 	max-width: 800px;
 	color: #555555;
@@ -104,6 +112,7 @@ h1 a {
 }
 .maincontent {
 	margin-left: auto;
+  padding-left: 4px;
 	margin-right: auto;
 	max-width: 800px;
 	color: #555555;

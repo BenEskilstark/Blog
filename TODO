@@ -32,6 +32,7 @@
     - update secret string with current date?
     - use iat to invalidate tokens?
   - GDPR disclaimer?
+  - favicon
   - meta descriptions and img previews
   - robots.txt
 
