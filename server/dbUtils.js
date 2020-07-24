@@ -7,32 +7,44 @@ const {Client} = require('pg');
 // -------------------------------------------------------------------------
 
 const writeQuery = (table, row, pgClient) => {
-  const valuesStr = toValuesStr(row);
+  const {valuesStr, queryPayload} = toValuesStr(row);
   const queryStr = `INSERT INTO ${table} ${valuesStr}`;
-  return queryPostgres(queryStr, 'write', pgClient);
+  return queryPostgres(queryStr, queryPayload, 'write', pgClient);
 };
 
 
 const deleteQuery = (table, filters, pgClient) => {
-  const filterStr = toFilterStr(filters);
+  const {filterStr, queryPayload}  = toFilterStr(filters);
   const queryStr = `DELETE FROM ${table} ${filterStr}`;
-  return queryPostgres(queryStr, 'write', pgClient);
+  return queryPostgres(queryStr, queryPayload, 'write', pgClient);
 };
 
 
 const selectQuery = (table, columns, filters, pgClient, orderBy) => {
   const selectStr = `SELECT ${columns.join(', ')} FROM ${table}`;
-  const filterStr = toFilterStr(filters, orderBy);
+  const {filterStr, queryPayload} = toFilterStr(filters, orderBy);
   const queryStr = `${selectStr} ${filterStr}`;
-  return queryPostgres(queryStr, 'readOnly', pgClient);
+  return queryPostgres(queryStr, queryPayload, 'readOnly', pgClient);
 };
 
 
+const upsertQuery = (table, row, updateRow, filters, pgClient) => {
+  const setStr = toUpdateStr(updateRow);
+  const values = toValuesStr(row);
+  const {filterStr, queryPayload} = toFilterStr(filters, null, Object.keys(row).length, true);
+  const conflictTarget = Object.keys(filters)[0];
+  const queryStr = `INSERT INTO ${table} ${values.valuesStr}
+    ON CONFLICT ON CONSTRAINT ${conflictTarget} DO UPDATE ${setStr} ${filterStr}`;
+  return queryPostgres(
+    queryStr, [...values.queryPayload, ...queryPayload], 'write', pgClient,
+  );
+};
+
 const updateQuery = (table, row, filters, pgClient) => {
   const setStr = toUpdateStr(row);
-  const filterStr = toFilterStr(filters);
+  const {filterStr, queryPayload} = toFilterStr(filters);
   const queryStr = `UPDATE ${table} ${setStr} ${filterStr}`;
-  return queryPostgres(queryStr, 'write', pgClient);
+  return queryPostgres(queryStr, queryPayload, 'write', pgClient);
 };
 
 
@@ -55,13 +67,13 @@ const getPostgresClient = () => {
 
 
 // returns the query as a promise
-const queryPostgres = (queryStr, readMode, pgClient) => {
+const queryPostgres = (queryStr, queryPayload, readMode, pgClient) => {
   const client = pgClient != null ? pgClient : getPostgresClient();
   client.connect();
   if (readMode == 'readOnly' || readMode == 'readonly' || readMode == 'read only') {
     client.query('SET SESSION CHARACTERISTICS AS TRANSACTION READ ONLY;', () => {});
   }
- return  client.query(queryStr)
+ return  client.query(queryStr, queryPayload)
   .then(
     (res) => {
       if (pgClient == null) client.end();
@@ -78,15 +90,19 @@ const queryPostgres = (queryStr, readMode, pgClient) => {
 
 
 // convert filters json into sql where conditions
-const toFilterStr = (filters, orderBy) => {
+const toFilterStr = (filters, orderBy, offset, excluded) => {
+  const excludeStr = excluded ? 'EXCLUDED.' : '';
   let filterStr = ' ';
+  offset = offset == null ? 0 : offset;
+  const queryPayload = [];
   const cols = Object.keys(filters);
   for (let i = 0; i < cols.length; i++) {
     if (i == 0) {
       filterStr += 'WHERE ';
     }
     const col = cols[i];
-    filterStr += col + "='" + filters[col] + "'";
+    filterStr += excludeStr + col + "= $" + (i + offset + 1);
+    queryPayload.push(filters[col]);
     if (i < cols.length - 1) {
       filterStr += ' AND ';
     }
@@ -95,28 +111,32 @@ const toFilterStr = (filters, orderBy) => {
     filterStr += ` ORDER BY ${orderBy} ASC`;
   }
 
-  return filterStr;
+  return {filterStr, queryPayload};
 }
 
 const toValuesStr = (row) => {
   let columnStr = '';
   let valueStr = '';
+  const queryPayload = [];
   const cols = Object.keys(row);
   for (let i = 0; i < cols.length; i++) {
     columnStr += cols[i];
     let value = row[cols[i]];
-    if (value != (parseFloat(value))) {
-      value = "'" + value + "'";
-    }
-    valueStr += value;
-    // valueStr += "'" + row[cols[i]] + "'";
+    // if (value != (parseFloat(value))) {
+    //   value = "'" + value + "'";
+    // }
+    queryPayload.push(value);
+    valueStr += "$" + (i + 1);
     if (i < cols.length - 1) {
       columnStr += ', ';
       valueStr += ', ';
     }
   }
 
-  return `(${columnStr}) VALUES (${valueStr})`;
+  return {
+    valuesStr: `(${columnStr}) VALUES (${valueStr})`,
+    queryPayload,
+  };
 }
 
 const toUpdateStr = (row) => {
@@ -142,4 +162,5 @@ module.exports = {
   selectQuery,
   updateQuery,
   deleteQuery,
+  upsertQuery,
 }

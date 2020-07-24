@@ -1,8 +1,9 @@
 
-- - - - - THURSDAY - - - - -
-  - comments
-    - make composer responsive
-  - fix sql injection of apostrophes, etc. in comments
+- - - - - FRIDAY - - - - -
+  - responsiveness
+    - make masthead links responsive
+    - make blog text responsive
+    - make composer/comments responsive
   - rename master branch to prod
   - family-specifc page
     - validation middleware to get the thread
@@ -24,7 +25,6 @@
 
 
 - - - - - BACKEND - - - - -
-  - how to track pageviews?
 
 
 - - - - - NEXT - - - - -
@@ -33,15 +33,14 @@
     - use iat to invalidate tokens?
   - GDPR disclaimer?
   - meta descriptions and img previews
+  - robots.txt
 
 
 - - - - - WISH - - - - -
   - email confirmation
   - refresh tokens
-  - handle failure to create user (e.g. duplicate username)
   - user profiles
   - embedding amazon images?
-  - stuff for family?
 
 
 - - - - - INLINE - - - - -

@@ -7,6 +7,7 @@ const {
 const {
   validJWTNeeded,
   minimumPermissionLevelRequired,
+  recordVisit,
 } = require('./middleware');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
@@ -29,7 +30,7 @@ users.post('/create', (req, res) => {
   req.body.password = salt + "$" + hash;
   const {username, password} = req.body;
 
-  writeQuery('blog_users', {username, password, permissionLevel: 1})
+  writeQuery('blog_users', {username, password, permissionLevel: 1, numlogins: 1})
     .then(() => {
       res.status(201).send(getTokens(req));
     })
@@ -137,6 +138,7 @@ comments.post('/delete', [
 // Blog
 // -------------------------------------------------------------------------
 const blog = express();
+blog.use(recordVisit());
 blog.use(express.static('home'));
 blog.use('/blog', users);
 blog.use(['/blog', '/threads'], comments);

@@ -1,10 +1,7 @@
 const jwt = require('jsonwebtoken');
 const {jwtSecret} = require('./config');
-const {selectQuery} = require('./dbUtils');
+const {selectQuery, updateQuery, upsertQuery} = require('./dbUtils');
 
-// -------------------------------------------------------------------------
-// Middleware
-// -------------------------------------------------------------------------
 const validJWTNeeded = (req, res, next) => {
   if (req.headers['authorization']) {
     try {
@@ -44,7 +41,44 @@ const minimumPermissionLevelRequired = (requiredPermissionLevel) => {
   };
 };
 
+const recordVisit = () => {
+  return (req, res, next) => {
+    if (req.method != 'GET') {
+      next();
+      return;
+    }
+    const pathArr = req.path.split('/');
+    if (pathArr[1] == 'index.html') {
+      setVisit('benhub');
+      setVisit('benhub/home/index.html');
+    } else if (
+      pathArr.length > 2 && pathArr[pathArr.length - 1].split('.')[1] == 'html'
+    ) {
+      setVisit('benhub');
+      setVisit('benhub' + req.path);
+    }
+    next();
+  };
+};
+
+const setVisit = (site) => {
+  upsertQuery(
+    'visits',
+    {
+      site: site,
+      num_visits: 1,
+      last_visited: new Date(),
+    },
+    {
+      num_visits: 'visits.num_visits + 1',
+      last_visited: 'current_timestamp',
+    },
+    {site},
+  );
+}
+
 module.exports = {
   validJWTNeeded,
   minimumPermissionLevelRequired,
+  recordVisit,
 };
