@@ -3,12 +3,21 @@
 	<head>
 		<meta name="description" content="Displays my Blog">
 		<meta name="author" content="Ben Eskildsen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" type="text/css" href="fourier.css">
+		<link rel="stylesheet" type="text/css" href="../../css/styles.css">
 	</head>
 	<body>
 
-<!-- ****************************START OF POST********************* -->
-
+    <div class="masthead">
+      <h1><a href="/index.html">benhub.io</a></h1>
+      <div>
+        <a href="../../about/index.html">About</a>
+        <a href="../../blog/index.html">Blog</a>
+        <a href="../index.html">Projects</a>
+        <a href="../../contact/index.html">Contact</a>
+      </div>
+    </div>
 		<div id="blog-wrapper">
 
 			<div class="blog-text">
@@ -19,7 +28,7 @@
 			<div class="canvasses" style="background-color:#E8E8E8">
 				<canvas id="canvas2.1" width="1000" height="500"></canvas>
 				<script src="fourier.js"></script>
-				<script> 
+				<script>
 					var a = new circle ("canvas2.1");
 					var b = new circle ("");
 					var c = new circle ("");
@@ -45,9 +54,9 @@
 			<div class="blog-text">
 				<p> A Fourier toy inspired by <a href="http://toxicdump.org/stuff/FourierToy.swf">this one</a>. Try adjusting the speeds and radii of the different circles to get different sinusoids.</p>
 			</div>
+      <a href="../index.html">Back to Projects</a>
 
 		</div>
 
-		<a href="http://beneskildsen.github.io">Back to Blog</a>
 	</body>
 </html>

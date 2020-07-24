@@ -4,13 +4,19 @@
 		<meta name="description" content="CAs">
 		<meta name="author" content="Ben Eskildsen">
 		<link rel="stylesheet" type="text/css" href="../blog.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" type="text/css" href="../../css/styles.css">
 	</head>
 
-		<div id="header">
-			<div id="header_image_container">
-				<img id="header_img" src="../header_img.png">
-			</div>
-		</div>
+    <div class="masthead">
+      <h1><a href="/index.html">benhub.io</a></h1>
+      <div>
+        <a href="../../about/index.html">About</a>
+        <a href="../../blog/index.html">Blog</a>
+        <a href="../index.html">Projects</a>
+        <a href="../../contact/index.html">Contact</a>
+      </div>
+    </div>
 
 		<div id="maincontent">
 			<h1> CELLULAR AUTOMATA </h1>
@@ -29,10 +35,10 @@
 					<input type="button" name="run" value="Run" onClick="create_instance (instance5, false, this.form);">
 				</form>
 				<p></p>
-				Exploring the state space of cellular automata. 
-				<p></p>We can find some really weird behavior: create:3;starve:4;suffocate7;seed:65% is just an oozing mass of cells that slowly congeals. But then create:3;starve:5;suffocate7;seed:65% just immediately decays to nothing. Other automata of interest: 
+				Exploring the state space of cellular automata.
+				<p></p>We can find some really weird behavior: create:3;starve:4;suffocate7;seed:65% is just an oozing mass of cells that slowly congeals. But then create:3;starve:5;suffocate7;seed:65% just immediately decays to nothing. Other automata of interest:
 					<ul>
-						<li>create:3; starve:4; suffocate:8; seed:55%</li> 
+						<li>create:3; starve:4; suffocate:8; seed:55%</li>
 						<li>create:3; starve:5; suffocate:8; seed:65%</li>
 						<li>create:3; starve:2; suffocate:4; seed:5%</li>
 						<li>create:3; starve:2; suffocate:3; seed:15% (note that these are Conway's rules)</li>
@@ -45,8 +51,8 @@
 			<p>
 			I had meant for this post to be a lot more in-depth study of CA's, but it's been taking me so long to make any progress at all on that front that I've decided to just post this as-is and let any reader explore as they wish. I'll come back to CA's at some point.
 		</p>
+		<a href="../index.html">Back to Projects</a>
 	</div>
 
-		<a href="http://beneskildsen.github.io">Back to Blog</a>
 	</body>
 </html>
