@@ -34,9 +34,9 @@ const Main = () => {
         marginLeft: '-60px',
       }}>
         <div style={{marginLeft: '8px', marginBottom: '8px'}}>
-          <a href="about/index.html">About</a></div>
-        <div style={{marginLeft: '8px', marginBottom: '8px'}}>
           <a href="blog/index.html">Blog</a></div>
+        <div style={{marginLeft: '8px', marginBottom: '8px'}}>
+          <a href="about/index.html">About</a></div>
         <div style={{marginLeft: '8px', marginBottom: '8px'}}>
           <a href="projects/index.html">Projects</a></div>
         <div style={{marginLeft: '8px', marginBottom: '8px'}}>

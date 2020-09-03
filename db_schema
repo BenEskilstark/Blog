@@ -17,5 +17,3 @@ create table blog_comments (
   createdat timestamp default current_timestamp
 );
 
-
-insert into visits (site, num_visits, last_visited) VALUES ('benhub/blog/index.html', 1, current_timestamp) ON CONFLICT ON CONSTRAINT site DO UPDATE SET num_visits=EXCLUDED.num_visits + 1, last_visited=current_timestamp  WHERE site= 'benhub/blog/index.html';
