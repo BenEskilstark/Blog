@@ -1,0 +1,10 @@
+
+- picture for each pin
+- select map of America
+- positioning and styling of pins
+- pre-processing for days
+  - insert paragraph breaks
+  - wrap in divs?
+  - output into bin folder
+- day reports
+  - separate page for each day, w/ pictures?
