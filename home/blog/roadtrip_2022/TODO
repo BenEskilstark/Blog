@@ -1,7 +1,9 @@
 
 - picture for each pin
-- select map of America
+  - better picture for day0 (menlo park)
+  - pictures for later days
 - positioning and styling of pins
+  - make positioning screen-size responsive
 - pre-processing for days
   - insert paragraph breaks
   - wrap in divs?

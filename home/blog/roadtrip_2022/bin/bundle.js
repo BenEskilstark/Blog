@@ -30916,6 +30916,10 @@ module.exports = TextField;
 },{"React":3}],53:[function(require,module,exports){
 'use strict';
 
+var _PINS;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var axios = require('axios');
@@ -30924,7 +30928,55 @@ var useEffect = React.useEffect,
     useState = React.useState;
 
 
-var Blog = function Blog() {
+var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
+  name: 'Menlo Park, California',
+  picture: 'img/day0-2.png',
+  position: { x: 115, y: 465 },
+  outgoing: ['Joshua Tree, California']
+}), _defineProperty(_PINS, 'Joshua Tree, California', {
+  name: 'Joshua Tree, California',
+  position: { x: 190, y: 550 },
+  picture: 'img/day1-2.png',
+  outgoing: ['Sunfair Dry Lake Bed, California']
+}), _defineProperty(_PINS, 'Sunfair Dry Lake Bed, California', {
+  name: 'Sunfair Dry Lake Bed, California',
+  position: { x: 225, y: 590 },
+  picture: 'img/day0-2.png',
+  outgoing: ['Red Rock Canyon, Nevada']
+}), _defineProperty(_PINS, 'Red Rock Canyon, Nevada', {
+  name: 'Red Rock Canyon, Nevada',
+  position: { x: 230, y: 525 },
+  picture: 'img/day3-1.png',
+  outgoing: ['Las Vegas, Nevada']
+}), _defineProperty(_PINS, 'Las Vegas, Nevada', {
+  name: 'Las Vegas, Nevada',
+  position: { x: 255, y: 550 },
+  picture: 'img/day3-2.jpg',
+  outgoing: ['Spotted Wolf View Area, Utah']
+}), _defineProperty(_PINS, 'Spotted Wolf View Area, Utah', {
+  name: 'Spotted Wolf View Area, Utah',
+  position: { x: 355, y: 490 },
+  picture: '',
+  outgoing: ['Loveland, Colorado']
+}), _defineProperty(_PINS, 'Loveland, Colorado', {
+  name: 'Loveland, Colorado',
+  position: { x: 455, y: 475 },
+  picture: '',
+  outgoing: ['Osborn, Missouri']
+}), _defineProperty(_PINS, 'Osborn, Missouri', {
+  name: ['Osborn, Missouri'],
+  position: { x: 680, y: 485 },
+  picture: '',
+  outgoing: []
+}), _PINS);
+
+var RoadTrip = function RoadTrip() {
+  var pins = [];
+  for (var name in PINS) {
+    var pin = PINS[name];
+    pins.push(React.createElement(Pin, { key: "PIN_" + name, pin: pin }));
+  }
+
   return React.createElement(
     'div',
     {
@@ -30933,18 +30985,47 @@ var Blog = function Blog() {
       }
     },
     React.createElement(
-      'h2',
-      null,
-      'Comments:'
+      'div',
+      {
+        style: {
+          overflow: 'hidden',
+          maxWidth: 1200,
+          maxHeight: 700,
+          margin: 'auto',
+          marginLeft: 0
+        }
+      },
+      React.createElement('img', { src: './img/USA.png', width: '100%', height: '100%' })
     ),
-    React.createElement(Thread, {
-      cols: 75,
-      thread: window.location.pathname
-    })
+    pins
   );
 };
 
-ReactDOM.render(React.createElement(Blog, null), document.getElementById('container'));
+var Pin = function Pin(props) {
+  var pin = props.pin;
+
+
+  var width = 50;
+  var height = 50;
+
+  var img = pin.picture != '' ? React.createElement('img', { src: pin.picture, width: '100%', height: '100%' }) : null;
+
+  return React.createElement(
+    'div',
+    { className: 'roadtrip_pin',
+      style: {
+        borderRadius: '50%',
+        position: 'absolute',
+        overflow: 'hidden',
+        top: pin.position.y,
+        left: pin.position.x
+      }
+    },
+    img
+  );
+};
+
+ReactDOM.render(React.createElement(RoadTrip, null), document.getElementById('container'));
 },{"../Thread.react":48,"axios":4,"react":38,"react-dom":35}],54:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};

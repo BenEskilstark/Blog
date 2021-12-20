@@ -16,6 +16,10 @@ const urlParser = require('url');
 
 const port = process.env.PORT || 8000;
 
+process.on('uncaughtException', function (err) {
+      console.log(err);
+});
+
 // -------------------------------------------------------------------------
 // Users
 // -------------------------------------------------------------------------
@@ -138,7 +142,7 @@ comments.post('/delete', [
 // Blog
 // -------------------------------------------------------------------------
 const blog = express();
-blog.use(recordVisit());
+// blog.use(recordVisit());
 blog.use(express.static('home'));
 blog.use('/blog', users);
 blog.use(['/blog', '/threads'], comments);
