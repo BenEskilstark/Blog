@@ -30678,8 +30678,8 @@ var Main = function Main() {
         { style: { marginLeft: '8px', marginBottom: '8px' } },
         React.createElement(
           'a',
-          { href: 'about/index.html' },
-          'About'
+          { href: 'blog/index.html' },
+          'Blog'
         )
       ),
       React.createElement(
@@ -30687,8 +30687,8 @@ var Main = function Main() {
         { style: { marginLeft: '8px', marginBottom: '8px' } },
         React.createElement(
           'a',
-          { href: 'blog/index.html' },
-          'Blog'
+          { href: 'about/index.html' },
+          'About'
         )
       ),
       React.createElement(

@@ -3,7 +3,6 @@ body {
   background-color: #faf8ef;
   width: 100vw;
   height: 100vh;
-  user-select: none;
   box-sizing: border-box;
   /* font-family: "Courier New", sans-serif; */
   color: #555555;
