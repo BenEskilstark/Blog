@@ -30916,6 +30916,10 @@ module.exports = TextField;
 },{"React":3}],53:[function(require,module,exports){
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _PINS;
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -30925,91 +30929,184 @@ var ReactDOM = require('react-dom');
 var axios = require('axios');
 var Thread = require('../Thread.react');
 var useEffect = React.useEffect,
-    useState = React.useState;
+    useState = React.useState,
+    useMemo = React.useMemo;
 
 
+var pinSize = 50;
 var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   name: 'Menlo Park, California',
-  picture: 'img/day0-2.png',
-  position: { x: 115, y: 465 },
+  key: 'menlo_park',
+  picture: 'img/menlo_park_1.png',
+  position: { x: 115, y: 325 },
   outgoing: ['Joshua Tree, California']
 }), _defineProperty(_PINS, 'Joshua Tree, California', {
   name: 'Joshua Tree, California',
-  position: { x: 190, y: 550 },
-  picture: 'img/day1-2.png',
+  key: 'joshua_tree',
+  position: { x: 190, y: 410 },
+  picture: 'img/joshua_tree_1.png',
   outgoing: ['Sunfair Dry Lake Bed, California']
 }), _defineProperty(_PINS, 'Sunfair Dry Lake Bed, California', {
   name: 'Sunfair Dry Lake Bed, California',
-  position: { x: 225, y: 590 },
-  picture: 'img/day0-2.png',
+  key: 'sunfair_dry_lake',
+  position: { x: 225, y: 450 },
+  picture: 'img/sunfair_dry_lake_1.png',
   outgoing: ['Red Rock Canyon, Nevada']
 }), _defineProperty(_PINS, 'Red Rock Canyon, Nevada', {
   name: 'Red Rock Canyon, Nevada',
-  position: { x: 230, y: 525 },
-  picture: 'img/day3-1.png',
+  key: 'red_rock_canyon',
+  position: { x: 230, y: 365 },
+  picture: 'img/red_rock_canyon_1.png',
   outgoing: ['Las Vegas, Nevada']
 }), _defineProperty(_PINS, 'Las Vegas, Nevada', {
   name: 'Las Vegas, Nevada',
-  position: { x: 255, y: 550 },
-  picture: 'img/day3-2.jpg',
+  key: 'las_vegas',
+  position: { x: 255, y: 410 },
+  picture: 'img/las_vegas_1.png',
   outgoing: ['Spotted Wolf View Area, Utah']
 }), _defineProperty(_PINS, 'Spotted Wolf View Area, Utah', {
   name: 'Spotted Wolf View Area, Utah',
-  position: { x: 355, y: 490 },
-  picture: '',
+  key: 'spotted_wolf_utah',
+  position: { x: 355, y: 310 },
+  picture: 'img/spotted_wolf_utah_1.png',
   outgoing: ['Loveland, Colorado']
 }), _defineProperty(_PINS, 'Loveland, Colorado', {
   name: 'Loveland, Colorado',
-  position: { x: 455, y: 475 },
-  picture: '',
+  key: 'loveland',
+  position: { x: 455, y: 315 },
+  picture: 'img/loveland_1.png',
   outgoing: ['Osborn, Missouri']
 }), _defineProperty(_PINS, 'Osborn, Missouri', {
   name: ['Osborn, Missouri'],
-  position: { x: 680, y: 485 },
-  picture: '',
+  key: 'osborn_mo',
+  position: { x: 710, y: 345 },
+  picture: 'img/osborn_mo_1.png',
+  outgoing: []
+}), _defineProperty(_PINS, 'Columbus, Ohio', {
+  name: ['Columbus, Ohio'],
+  key: 'columbus',
+  position: { x: 900, y: 300 },
+  picture: 'img/columbus_1.png',
+  outgoing: []
+}), _defineProperty(_PINS, 'Woods Hole, Massachusetts', {
+  name: ['Woods Hole, Massachusetts'],
+  key: 'woods_hole',
+  position: { x: 1120, y: 230 },
+  picture: 'img/woods_hole_1.png',
   outgoing: []
 }), _PINS);
 
-var RoadTrip = function RoadTrip() {
-  var pins = [];
-  for (var name in PINS) {
-    var pin = PINS[name];
-    pins.push(React.createElement(Pin, { key: "PIN_" + name, pin: pin }));
-  }
+var mapSize = { width: 1200, height: 800 };
 
+var RoadTrip = function RoadTrip() {
+  var _useState = useState({
+    width: window.innerWidth, height: window.innerHeight
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      dims = _useState2[0],
+      setDims = _useState2[1];
+
+  var handleResize = debounce(function () {
+    console.log("handleResize");
+    setDims({
+      width: window.innerWidth, height: window.innerHeight
+    });
+  }, 500);
+
+  var _useMemo = useMemo(function () {
+    var pins = [];
+    var edges = [];
+    var nextEdge = { start: null, end: null };
+    var i = 0;
+    for (var name in PINS) {
+      var pin = PINS[name];
+      var x = mapSize.width / dims.width;
+      var y = mapSize.height / dims.height;
+      var adj = { x: pin.position.x / x, y: pin.position.y / y };
+
+      if (nextEdge.start == null) {
+        nextEdge.start = _extends({}, adj); // handles first pin only
+      } else {
+        nextEdge.end = _extends({}, adj);
+        edges.push(nextEdge);
+        nextEdge = { start: _extends({}, adj), end: null };
+      }
+
+      pins.push(React.createElement(Pin, {
+        key: "PIN_" + name, pin: pin, adjustedPosition: adj, index: i
+      }));
+      i++;
+    }
+
+    edges = edges.map(function (edge) {
+      var dist = Math.sqrt((edge.end.x - edge.start.x) * (edge.end.x - edge.start.x) + (edge.end.y - edge.start.y) * (edge.end.y - edge.start.y));
+      var theta = 2 * Math.PI + Math.atan2(edge.end.y - edge.start.y, edge.end.x - edge.start.x) % (2 * Math.PI);
+      var deg = 180 * theta / Math.PI;
+      return React.createElement('div', {
+        key: 'edge_' + edge.start.x + '_' + edge.start.y + '_' + edge.end.x + '_' + edge.end.y,
+        style: {
+          border: '1px solid black',
+          height: '2px',
+          width: dist,
+          backgroundColor: 'black',
+          position: 'absolute',
+          top: edge.start.y + pinSize / 2,
+          left: edge.start.x + pinSize / 2,
+          transformOrigin: '0 0',
+          transform: 'rotate(' + deg + 'deg)',
+          WebkitTransform: 'rotate(' + deg + 'deg)',
+          OTransform: 'rotate(' + deg + 'deg)',
+          msTransform: 'rotate(' + deg + 'deg)',
+          MozTransform: 'rotate(' + deg + 'deg)'
+        }
+      });
+    });
+    return [pins, edges];
+  }, [dims.width, dims.height]),
+      _useMemo2 = _slicedToArray(_useMemo, 2),
+      pins = _useMemo2[0],
+      edges = _useMemo2[1];
+
+  window.addEventListener('resize', handleResize);
   return React.createElement(
     'div',
     {
-      style: {
-        marginBottom: 500
-      }
+      style: {}
     },
     React.createElement(
       'div',
       {
+        id: 'MAP',
         style: {
           overflow: 'hidden',
-          maxWidth: 1200,
-          maxHeight: 700,
+          maxWidth: '100%',
+          maxHeight: '100%',
           margin: 'auto',
-          marginLeft: 0
+          marginLeft: 0,
+          position: 'relative'
         }
       },
-      React.createElement('img', { src: './img/USA.png', width: '100%', height: '100%' })
-    ),
-    pins
+      React.createElement('img', { src: './img/USA.png', width: '100%', height: '100%' }),
+      edges,
+      pins
+    )
   );
 };
 
 var Pin = function Pin(props) {
-  var pin = props.pin;
+  var pin = props.pin,
+      adjustedPosition = props.adjustedPosition,
+      index = props.index;
 
-
-  var width = 50;
-  var height = 50;
 
   var img = pin.picture != '' ? React.createElement('img', { src: pin.picture, width: '100%', height: '100%' }) : null;
 
+  var border = null;
+  if (index == 0) {
+    border = '2px solid #7CFC00';
+  } else if (index == Object.keys(PINS).length - 1) {
+    border = '2px solid red';
+  }
   return React.createElement(
     'div',
     { className: 'roadtrip_pin',
@@ -31017,13 +31114,28 @@ var Pin = function Pin(props) {
         borderRadius: '50%',
         position: 'absolute',
         overflow: 'hidden',
-        top: pin.position.y,
-        left: pin.position.x
+        top: adjustedPosition.y,
+        left: adjustedPosition.x,
+        border: border
       }
     },
     img
   );
 };
+
+function debounce(fn, ms) {
+  var _this = this,
+      _arguments = arguments;
+
+  var timer = void 0;
+  return function (_) {
+    clearTimeout(timer);
+    timer = setTimeout(function (_) {
+      timer = null;
+      fn.apply(_this, _arguments);
+    }, ms);
+  };
+}
 
 ReactDOM.render(React.createElement(RoadTrip, null), document.getElementById('container'));
 },{"../Thread.react":48,"axios":4,"react":38,"react-dom":35}],54:[function(require,module,exports){

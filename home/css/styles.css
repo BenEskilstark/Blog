@@ -126,9 +126,9 @@ h1 a {
 }
 
 .roadtrip_pin:hover {
-  width: 100px;
-  height: 100px;
-  margin-left: -25px;
-  margin-top: -25px;
+  width: 200px;
+  height: 200px;
+  margin-left: -75px;
+  margin-top: -75px;
   z-index: 2;
 }

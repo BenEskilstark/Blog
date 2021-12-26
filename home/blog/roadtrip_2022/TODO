@@ -1,12 +1,10 @@
 
-- picture for each pin
-  - better picture for day0 (menlo park)
-  - pictures for later days
-- positioning and styling of pins
-  - make positioning screen-size responsive
-- pre-processing for days
+- pre-processing for entries
   - insert paragraph breaks
   - wrap in divs?
   - output into bin folder
-- day reports
-  - separate page for each day, w/ pictures?
+- entry reports
+  - processing for pictures
+  - consider using Amazon or something to host the images
+- pins
+  - better handling of overlapping pins
