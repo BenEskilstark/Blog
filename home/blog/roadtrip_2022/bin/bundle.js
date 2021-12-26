@@ -30939,12 +30939,6 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'menlo_park',
   picture: 'img/menlo_park_1.png',
   position: { x: 115, y: 325 },
-  outgoing: ['Joshua Tree, California']
-}), _defineProperty(_PINS, 'Joshua Tree, California', {
-  name: 'Joshua Tree, California',
-  key: 'joshua_tree',
-  position: { x: 190, y: 410 },
-  picture: 'img/joshua_tree_1.png',
   outgoing: ['Sunfair Dry Lake Bed, California']
 }), _defineProperty(_PINS, 'Sunfair Dry Lake Bed, California', {
   name: 'Sunfair Dry Lake Bed, California',
@@ -30957,12 +30951,6 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'red_rock_canyon',
   position: { x: 230, y: 365 },
   picture: 'img/red_rock_canyon_1.png',
-  outgoing: ['Las Vegas, Nevada']
-}), _defineProperty(_PINS, 'Las Vegas, Nevada', {
-  name: 'Las Vegas, Nevada',
-  key: 'las_vegas',
-  position: { x: 255, y: 410 },
-  picture: 'img/las_vegas_1.png',
   outgoing: ['Spotted Wolf View Area, Utah']
 }), _defineProperty(_PINS, 'Spotted Wolf View Area, Utah', {
   name: 'Spotted Wolf View Area, Utah',
@@ -31007,7 +30995,6 @@ var RoadTrip = function RoadTrip() {
       setDims = _useState2[1];
 
   var handleResize = debounce(function () {
-    console.log("handleResize");
     setDims({
       width: window.innerWidth, height: window.innerHeight
     });
@@ -31108,7 +31095,7 @@ var Pin = function Pin(props) {
     border = '2px solid red';
   }
   return React.createElement(
-    'div',
+    'a',
     { className: 'roadtrip_pin',
       style: {
         borderRadius: '50%',
@@ -31117,7 +31104,8 @@ var Pin = function Pin(props) {
         top: adjustedPosition.y,
         left: adjustedPosition.x,
         border: border
-      }
+      },
+      href: pin.key + '.html'
     },
     img
   );

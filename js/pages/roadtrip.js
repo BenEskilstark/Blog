@@ -13,13 +13,6 @@ const PINS = {
     key: 'menlo_park',
     picture: 'img/menlo_park_1.png',
     position: {x: 115, y: 325},
-    outgoing: ['Joshua Tree, California'],
-  },
-  ['Joshua Tree, California']: {
-    name: 'Joshua Tree, California',
-    key: 'joshua_tree',
-    position: {x: 190, y: 410},
-    picture: 'img/joshua_tree_1.png',
     outgoing: ['Sunfair Dry Lake Bed, California'],
   },
   ['Sunfair Dry Lake Bed, California']: {
@@ -34,13 +27,6 @@ const PINS = {
     key: 'red_rock_canyon',
     position: {x: 230, y: 365},
     picture: 'img/red_rock_canyon_1.png',
-    outgoing: ['Las Vegas, Nevada'],
-  },
-  ['Las Vegas, Nevada']: {
-    name: 'Las Vegas, Nevada',
-    key: 'las_vegas',
-    position: {x: 255, y: 410},
-    picture: 'img/las_vegas_1.png',
     outgoing: ['Spotted Wolf View Area, Utah'],
   },
   ['Spotted Wolf View Area, Utah']: {
@@ -191,7 +177,7 @@ const Pin = (props) => {
     border = '2px solid red';
   }
   return (
-    <div className="roadtrip_pin"
+    <a className="roadtrip_pin"
       style={{
         borderRadius: '50%',
         position: 'absolute',
@@ -200,9 +186,10 @@ const Pin = (props) => {
         left: adjustedPosition.x,
         border,
       }}
+      href={pin.key + '.html'}
     >
       {img}
-    </div>
+    </a>
   );
 };
 
