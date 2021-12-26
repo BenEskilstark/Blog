@@ -1,10 +1,9 @@
 
-- pre-processing for entries
-  - insert paragraph breaks
-  - wrap in divs?
-  - output into bin folder
+- get https working
 - entry reports
   - processing for pictures
+    - carousel react component?
   - consider using Amazon or something to host the images
 - pins
+  - make them look more clickable
   - better handling of overlapping pins

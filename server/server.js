@@ -143,6 +143,17 @@ comments.post('/delete', [
 // -------------------------------------------------------------------------
 const blog = express();
 // blog.use(recordVisit());
+
+if (port != 8000) {
+  blog.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https') {
+      res.redirect(`https://${req.header('host')}${req.url}`)
+    } else {
+      next()
+    }
+  })
+}
+
 blog.use(express.static('home'));
 blog.use('/blog', users);
 blog.use(['/blog', '/threads'], comments);

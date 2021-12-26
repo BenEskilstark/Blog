@@ -90,6 +90,8 @@ const RoadTrip = () => {
       const y = mapSize.height / dims.height;
       const adj = {x: pin.position.x / x, y: pin.position.y / y};
 
+      // TODO: this should add edges based on the outgoing property of the
+      // pins, not the implicit ordering of the dictionary of them
       if (nextEdge.start == null) {
         nextEdge.start = {...adj}; // handles first pin only
       } else {
