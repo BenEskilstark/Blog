@@ -20,6 +20,7 @@ mkdir home/blog/bin
 npm run browserify -- temp_bin/pages/blog.js -o home/blog/bin/bundle.js
 mkdir home/blog/roadtrip_2022/bin
 npm run browserify -- temp_bin/pages/roadtrip.js -o home/blog/roadtrip_2022/bin/bundle.js
+npm run browserify -- temp_bin/pages/carousel.js -o home/blog/roadtrip_2022/bin/carousel.js
 
 rm -rf temp_bin
 

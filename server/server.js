@@ -144,6 +144,7 @@ comments.post('/delete', [
 const blog = express();
 // blog.use(recordVisit());
 
+// force https redirect in prod
 if (port != 8000) {
   blog.use((req, res, next) => {
     if (req.header('x-forwarded-proto') !== 'https') {

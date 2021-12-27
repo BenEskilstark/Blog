@@ -31011,6 +31011,8 @@ var RoadTrip = function RoadTrip() {
       var y = mapSize.height / dims.height;
       var adj = { x: pin.position.x / x, y: pin.position.y / y };
 
+      // TODO: this should add edges based on the outgoing property of the
+      // pins, not the implicit ordering of the dictionary of them
       if (nextEdge.start == null) {
         nextEdge.start = _extends({}, adj); // handles first pin only
       } else {
