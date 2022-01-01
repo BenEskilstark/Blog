@@ -14,7 +14,8 @@ const maxPics = {
   loveland: 4,
   osborn_mo: 3,
   columbus: 4,
-  woods_hole: 4,
+  woods_hole: 6,
+  washington_dc: 1,
 };
 
 const Carousel = () => {
@@ -62,6 +63,18 @@ const Carousel = () => {
   }, []);
 
   const [index, setIndex] = useState(0);
+
+  // handle key press
+  useEffect(() => {
+    document.onkeydown = (ev) => {
+      if (ev.keyCode == 37) { // left
+        goToNextImage(index, -1, setIndex)
+      } else if (ev.keyCode == 39) { // right
+        goToNextImage(index, 1, setIndex)
+      }
+    }
+    return () => document.onkeydown = null;
+  }, [index]);
 
   return (
     <div

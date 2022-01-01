@@ -6,8 +6,11 @@
 - entry reports
   - pictures
     - make the buttons and positioning better
-    - use arrow keys to advance to next picture
-  - consider using Amazon or something to host the images
+  - hosting images
+    - consider using Amazon
+    - iCloud
+      - image links expire after 30 days
+      - page that is loaded at the link doesn't look good for embedding
   - add comments to entries?
 - pins
   - make them look more clickable

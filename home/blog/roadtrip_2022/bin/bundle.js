@@ -30982,6 +30982,12 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   position: { x: 1120, y: 230 },
   picture: 'img/woods_hole_1.png',
   outgoing: []
+}), _defineProperty(_PINS, 'Washington DC', {
+  name: ['Washington DC'],
+  key: 'washington_dc',
+  position: { x: 1000, y: 320 },
+  picture: 'img/washington_dc_1.png',
+  outgoing: []
 }), _PINS);
 
 var mapSize = { width: 1200, height: 800 };

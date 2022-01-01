@@ -64,6 +64,13 @@ const PINS = {
     picture: 'img/woods_hole_1.png',
     outgoing: [],
   },
+  ['Washington DC']: {
+    name: ['Washington DC'],
+    key: 'washington_dc',
+    position: {x: 1000, y: 320},
+    picture: 'img/washington_dc_1.png',
+    outgoing: [],
+  },
 }
 
 const mapSize = {width: 1200, height: 800};
