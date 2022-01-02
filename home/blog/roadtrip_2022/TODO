@@ -1,6 +1,8 @@
 
+- content
+  - add DC notes
+  - add DC pictures
 - privacy
-  - hide from google
   - password protect the map page?
 - add favicon for benhub
 - entry reports
@@ -13,5 +15,6 @@
       - page that is loaded at the link doesn't look good for embedding
   - add comments to entries?
 - pins
+  - correctly handle multiple outgoing edges from a pin
   - make them look more clickable
   - better handling of overlapping pins
