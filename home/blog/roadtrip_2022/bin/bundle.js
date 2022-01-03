@@ -30916,8 +30916,6 @@ module.exports = TextField;
 },{"React":3}],53:[function(require,module,exports){
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _PINS;
@@ -30969,24 +30967,30 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'osborn_mo',
   position: { x: 710, y: 345 },
   picture: 'img/osborn_mo_1.png',
-  outgoing: []
+  outgoing: ['Columbus, Ohio']
 }), _defineProperty(_PINS, 'Columbus, Ohio', {
   name: ['Columbus, Ohio'],
   key: 'columbus',
   position: { x: 900, y: 300 },
   picture: 'img/columbus_1.png',
-  outgoing: []
+  outgoing: ['Woods Hole, Massachusetts']
 }), _defineProperty(_PINS, 'Woods Hole, Massachusetts', {
   name: ['Woods Hole, Massachusetts'],
   key: 'woods_hole',
   position: { x: 1120, y: 230 },
   picture: 'img/woods_hole_1.png',
-  outgoing: []
+  outgoing: ['Washington DC', 'Bridgton, Maine']
 }), _defineProperty(_PINS, 'Washington DC', {
   name: ['Washington DC'],
   key: 'washington_dc',
   position: { x: 1000, y: 320 },
   picture: 'img/washington_dc_1.png',
+  outgoing: []
+}), _defineProperty(_PINS, 'Bridgton, Maine', {
+  name: ['Bridgton, Maine'],
+  key: 'bridgton_maine',
+  position: { x: 1100, y: 150 },
+  picture: 'img/bridgton_maine_1.png',
   outgoing: []
 }), _PINS);
 
@@ -31009,7 +31013,6 @@ var RoadTrip = function RoadTrip() {
   var _useMemo = useMemo(function () {
     var pins = [];
     var edges = [];
-    var nextEdge = { start: null, end: null };
     var i = 0;
     for (var name in PINS) {
       var pin = PINS[name];
@@ -31017,14 +31020,32 @@ var RoadTrip = function RoadTrip() {
       var y = mapSize.height / dims.height;
       var adj = { x: pin.position.x / x, y: pin.position.y / y };
 
-      // TODO: this should add edges based on the outgoing property of the
-      // pins, not the implicit ordering of the dictionary of them
-      if (nextEdge.start == null) {
-        nextEdge.start = _extends({}, adj); // handles first pin only
-      } else {
-        nextEdge.end = _extends({}, adj);
-        edges.push(nextEdge);
-        nextEdge = { start: _extends({}, adj), end: null };
+      // edges:
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = pin.outgoing[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var e = _step.value;
+
+          var epin = PINS[e];
+          var eadj = { x: epin.position.x / x, y: epin.position.y / y };
+          edges.push({ start: adj, end: eadj });
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator.return) {
+            _iterator.return();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
       }
 
       pins.push(React.createElement(Pin, {

@@ -48,27 +48,34 @@ const PINS = {
     key: 'osborn_mo',
     position: {x: 710, y: 345},
     picture: 'img/osborn_mo_1.png',
-    outgoing: [],
+    outgoing: ['Columbus, Ohio'],
   },
   ['Columbus, Ohio']: {
     name: ['Columbus, Ohio'],
     key: 'columbus',
     position: {x: 900, y: 300},
     picture: 'img/columbus_1.png',
-    outgoing: [],
+    outgoing: ['Woods Hole, Massachusetts'],
   },
   ['Woods Hole, Massachusetts']: {
     name: ['Woods Hole, Massachusetts'],
     key: 'woods_hole',
     position: {x: 1120, y: 230},
     picture: 'img/woods_hole_1.png',
-    outgoing: [],
+    outgoing: ['Washington DC', 'Bridgton, Maine'],
   },
   ['Washington DC']: {
     name: ['Washington DC'],
     key: 'washington_dc',
     position: {x: 1000, y: 320},
     picture: 'img/washington_dc_1.png',
+    outgoing: [],
+  },
+  ['Bridgton, Maine']: {
+    name: ['Bridgton, Maine'],
+    key: 'bridgton_maine',
+    position: {x: 1100, y: 150},
+    picture: 'img/bridgton_maine_1.png',
     outgoing: [],
   },
 }
@@ -89,7 +96,6 @@ const RoadTrip = () => {
   const [pins, edges] = useMemo(() => {
     const pins = [];
     let edges = [];
-    let nextEdge = {start: null, end: null};
     let i = 0;
     for (const name in PINS) {
       const pin = PINS[name];
@@ -97,14 +103,11 @@ const RoadTrip = () => {
       const y = mapSize.height / dims.height;
       const adj = {x: pin.position.x / x, y: pin.position.y / y};
 
-      // TODO: this should add edges based on the outgoing property of the
-      // pins, not the implicit ordering of the dictionary of them
-      if (nextEdge.start == null) {
-        nextEdge.start = {...adj}; // handles first pin only
-      } else {
-        nextEdge.end = {...adj};
-        edges.push(nextEdge);
-        nextEdge = {start: {...adj}, end: null};
+      // edges:
+      for (const e of pin.outgoing) {
+        const epin = PINS[e];
+        const eadj = {x: epin.position.x / x, y: epin.position.y / y};
+        edges.push({start: adj, end: eadj});
       }
 
       pins.push(<Pin
