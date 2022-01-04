@@ -31104,7 +31104,19 @@ var RoadTrip = function RoadTrip() {
       },
       React.createElement('img', { src: './img/USA.png', width: '100%', height: '100%' }),
       edges,
-      pins
+      pins,
+      React.createElement(
+        'a',
+        {
+          style: {
+            position: 'absolute',
+            bottom: 18,
+            left: 12
+          },
+          href: '../'
+        },
+        'Back to Blog'
+      )
     )
   );
 };

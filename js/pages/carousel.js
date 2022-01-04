@@ -15,7 +15,7 @@ const maxPics = {
   osborn_mo: 3,
   columbus: 4,
   woods_hole: 6,
-  washington_dc: 1,
+  washington_dc: 6,
 };
 
 const Carousel = () => {
@@ -85,7 +85,11 @@ const Carousel = () => {
       }}
     >
       {pictures[index]}
-      <div>
+      <div
+        style={{
+          display: maxPics[key] > 1 ? 'auto' : 'none'
+        }}
+      >
         <Button label="Previous" onClick={() => goToNextImage(index, -1, setIndex)} />
         <Button label="Next" onClick={() => goToNextImage(index, 1, setIndex)} />
       </div>

@@ -1,6 +1,5 @@
 
 - - - - - FRIDAY - - - - -
-  - rename master branch to prod
   - family-specifc page
     - validation middleware to get the thread
     - update comment thread when another user posts a comment

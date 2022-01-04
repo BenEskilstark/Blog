@@ -3,18 +3,19 @@
   - get heroku db working
   - turn view tracking over to new table
 - content
-  - add DC notes
-  - add DC pictures
 - privacy
   - password protect the map page?
 - entry reports
-  - pictures
-    - make the buttons and positioning better
+  - add comments to entries?
+  - add email subscription + sending?
+- pins
+  - better handling of overlapping pins
+- map
+- images
+  - make pictures full-screen-able
+  - make the buttons and positioning better
   - hosting images
     - consider using Amazon
     - iCloud
       - image links expire after 30 days
       - page that is loaded at the link doesn't look good for embedding
-  - add comments to entries?
-- pins
-  - better handling of overlapping pins

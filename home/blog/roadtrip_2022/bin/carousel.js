@@ -30368,7 +30368,7 @@ var maxPics = {
   osborn_mo: 3,
   columbus: 4,
   woods_hole: 6,
-  washington_dc: 1
+  washington_dc: 6
 };
 
 var Carousel = function Carousel() {
@@ -30455,7 +30455,11 @@ var Carousel = function Carousel() {
     pictures[index],
     React.createElement(
       'div',
-      null,
+      {
+        style: {
+          display: maxPics[key] > 1 ? 'auto' : 'none'
+        }
+      },
       React.createElement(Button, { label: 'Previous', onClick: function onClick() {
           return goToNextImage(index, -1, setIndex);
         } }),
