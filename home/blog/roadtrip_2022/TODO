@@ -1,7 +1,4 @@
 
-- database
-  - get heroku db working
-  - turn view tracking over to new table
 - content
 - privacy
   - password protect the map page?
@@ -19,3 +16,6 @@
     - iCloud
       - image links expire after 30 days
       - page that is loaded at the link doesn't look good for embedding
+- database
+  - get heroku db working
+  - turn view tracking over to new table
