@@ -16,6 +16,7 @@ const maxPics = {
   columbus: 4,
   woods_hole: 6,
   washington_dc: 6,
+  bridgton_maine: 4,
 };
 
 const Carousel = () => {

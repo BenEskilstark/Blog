@@ -30368,7 +30368,8 @@ var maxPics = {
   osborn_mo: 3,
   columbus: 4,
   woods_hole: 6,
-  washington_dc: 6
+  washington_dc: 6,
+  bridgton_maine: 4
 };
 
 var Carousel = function Carousel() {
