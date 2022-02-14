@@ -30965,7 +30965,7 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
 }), _defineProperty(_PINS, 'Osborn, Missouri', {
   name: ['Osborn, Missouri'],
   key: 'osborn_mo',
-  position: { x: 710, y: 345 },
+  position: { x: 700, y: 310 },
   picture: 'img/osborn_mo_1.png',
   outgoing: ['Columbus, Ohio']
 }), _defineProperty(_PINS, 'Columbus, Ohio', {
@@ -30973,7 +30973,7 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'columbus',
   position: { x: 900, y: 300 },
   picture: 'img/columbus_1.png',
-  outgoing: ['Woods Hole, Massachusetts']
+  outgoing: ['Woods Hole, Massachusetts', 'Lexington, Kentucky']
 }), _defineProperty(_PINS, 'Woods Hole, Massachusetts', {
   name: ['Woods Hole, Massachusetts'],
   key: 'woods_hole',
@@ -30991,6 +30991,12 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'bridgton_maine',
   position: { x: 1100, y: 150 },
   picture: 'img/bridgton_maine_1.png',
+  outgoing: []
+}), _defineProperty(_PINS, 'Lexington, Kentucky', {
+  name: ['Lexington, Kentucky'],
+  key: 'lexington_kentucky',
+  position: { x: 875, y: 365 },
+  picture: 'img/lexington_kentucky_1.png',
   outgoing: []
 }), _PINS);
 
