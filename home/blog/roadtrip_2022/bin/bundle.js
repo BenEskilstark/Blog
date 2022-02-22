@@ -30997,7 +30997,25 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'lexington_kentucky',
   position: { x: 875, y: 365 },
   picture: 'img/lexington_kentucky_1.png',
-  outgoing: []
+  outgoing: ['Ormond Beach, Florida']
+}), _defineProperty(_PINS, 'Ormond Beach, Florida', {
+  name: ['Ormond Beach, Florida'],
+  key: 'ormond_beach_florida',
+  position: { x: 960, y: 585 },
+  picture: 'img/ormond_beach_florida_1.png',
+  outgoing: ['Eastaboga, Alabama']
+}), _defineProperty(_PINS, 'Eastaboga, Alabama', {
+  name: ['Eastaboga, Alabama'],
+  key: 'eastaboga_alabama',
+  position: { x: 850, y: 485 },
+  picture: 'img/eastaboga_alabama_1.png',
+  outgoing: ['New Orleans']
+}), _defineProperty(_PINS, 'New Orleans', {
+  name: ['New Orleans'],
+  key: 'new_orleans',
+  position: { x: 730, y: 570 },
+  picture: 'img/new_orleans_1.png',
+  outgoing: ['New Orleans']
 }), _PINS);
 
 var mapSize = { width: 1200, height: 800 };
