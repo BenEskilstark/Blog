@@ -59,7 +59,70 @@ function App() {
         grid[gridX][gridY] = 1;
       }}
     >
+      <ScoreCard
+        grid={grid}
+      />
       {cells}
+    </div>
+  );
+}
+
+const ember1 = [ // 5 x 6
+  [0, 0, 0, 0, 0],
+  [0, 0, 1, 0, 0],
+  [0, 1, 0, 1, 0],
+  [0, 1, 0, 1, 0],
+  [0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0],
+];
+
+const ember2 = [ // 6 x 5
+  [0, 0, 0, 0, 0, 0],
+  [0, 0, 1, 1, 0, 0],
+  [0, 1, 0, 0, 1, 0],
+  [0, 0, 1, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0],
+];
+
+function matchesEmber(grid, x, y, ember) {
+  for (let i = 0; i < ember.length; i++) {
+    for (let j = 0; j < ember[i].length; j++) {
+      if (grid[x+i][y+j] != ember[i][j]) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+function ScoreCard(props) {
+  const {grid} = props;
+
+  let numEmbers = 0;
+
+  // count embers:
+  for (let x = 0; x < grid.length - 6; x++) {
+    const nextCol = [];
+    for (let y = 0; y < grid[0].length - 6; y++) {
+      if (matchesEmber(grid, x, y, ember1)) numEmbers++;
+      if (matchesEmber(grid, x, y, ember2)) numEmbers++;
+    }
+  }
+
+  return (
+    <div
+      style={{
+        backgroundColor: 'faf8ef',
+        position: 'absolute',
+        zIndex: 2,
+        top: 6,
+        left: 6,
+        padding: 6,
+        fontSize: 20,
+      }}
+    >
+      <div>Embers (<img style={{width: 20}} src="ember.png" />) {numEmbers}</div>
+      <div>Tap to make a spark</div>
     </div>
   );
 }

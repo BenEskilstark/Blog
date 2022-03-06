@@ -14,6 +14,7 @@ const PINS = {
     picture: 'img/menlo_park_1.png',
     position: {x: 115, y: 325},
     outgoing: ['Sunfair Dry Lake Bed, California'],
+    link: 'https://benjamineskildsen.substack.com/p/menlo-park-california?s=w',
   },
   ['Sunfair Dry Lake Bed, California']: {
     name: 'Sunfair Dry Lake Bed, California',
@@ -83,6 +84,7 @@ const PINS = {
     key: 'lexington_kentucky',
     position: {x: 875, y: 365},
     picture: 'img/lexington_kentucky_1.png',
+    link: 'https://benjamineskildsen.substack.com/p/kentucky?s=w',
     outgoing: ['Ormond Beach, Florida'],
   },
   ['Ormond Beach, Florida']: {
@@ -104,21 +106,57 @@ const PINS = {
     key: 'new_orleans',
     position: {x: 730, y: 570},
     picture: 'img/new_orleans_1.png',
-    outgoing: ['New Orleans'],
+    outgoing: ['Sea Rim, Texas'],
+  },
+  ['Sea Rim, Texas']: {
+    name: ['Sea Rim, Texas'],
+    key: 'sea_rim_texas',
+    position: {x: 670, y: 570},
+    picture: 'img/sea_rim_texas_1.png',
+    outgoing: ['Enchanted Rock, Texas'],
+  },
+  ['Enchanted Rock, Texas']: {
+    name: ['Enchanted Rock, Texas'],
+    key: 'enchanted_rock_texas',
+    position: {x: 580, y: 515},
+    picture: 'img/enchanted_rock_texas_1.png',
+    outgoing: ['Caprock Canyon, Texas'],
+  },
+  ['Caprock Canyon, Texas']: {
+    name: ['Caprock Canyon, Texas'],
+    key: 'caprock_canyon_texas',
+    position: {x: 520, y: 455},
+    picture: 'img/caprock_canyon_texas_1.png',
+    outgoing: ['White Sands'],
+  },
+  ['White Sands']: {
+    name: ['White Sands'],
+    key: 'white_sands',
+    position: {x: 455, y: 485},
+    picture: 'img/white_sands_1.png',
+    outgoing: ['White Sands'],
   },
 }
 
 const mapSize = {width: 1200, height: 800};
 
 const RoadTrip = () => {
-  const [dims, setDims] = useState({
-    width: window.innerWidth, height: window.innerHeight,
-  });
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  if  (height > width) {
+    height = width * 0.7;
+  }
+  const [dims, setDims] = useState({width, height});
+  //   width: window.innerWidth, height: window.innerHeight,
+  // });
 
   const handleResize = debounce(() => {
-    setDims({
-      width: window.innerWidth, height: window.innerHeight,
-    });
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    if  (height > width) {
+      height = width * 0.7;
+    }
+    setDims({width, height});
   }, 500);
 
   const [pins, edges] = useMemo(() => {
@@ -134,6 +172,7 @@ const RoadTrip = () => {
       // edges:
       for (const e of pin.outgoing) {
         const epin = PINS[e];
+        console.log(epin)
         const eadj = {x: epin.position.x / x, y: epin.position.y / y};
         edges.push({start: adj, end: eadj});
       }
@@ -236,7 +275,7 @@ const Pin = (props) => {
         left: adjustedPosition.x,
         border,
       }}
-      href={pin.key + '.html'}
+      href={pin.link ? pin.link : pin.key + '.html'}
     >
       {img}
     </a>

@@ -30937,7 +30937,8 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'menlo_park',
   picture: 'img/menlo_park_1.png',
   position: { x: 115, y: 325 },
-  outgoing: ['Sunfair Dry Lake Bed, California']
+  outgoing: ['Sunfair Dry Lake Bed, California'],
+  link: 'https://benjamineskildsen.substack.com/p/menlo-park-california?s=w'
 }), _defineProperty(_PINS, 'Sunfair Dry Lake Bed, California', {
   name: 'Sunfair Dry Lake Bed, California',
   key: 'sunfair_dry_lake',
@@ -30997,6 +30998,7 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'lexington_kentucky',
   position: { x: 875, y: 365 },
   picture: 'img/lexington_kentucky_1.png',
+  link: 'https://benjamineskildsen.substack.com/p/kentucky?s=w',
   outgoing: ['Ormond Beach, Florida']
 }), _defineProperty(_PINS, 'Ormond Beach, Florida', {
   name: ['Ormond Beach, Florida'],
@@ -31015,23 +31017,56 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'new_orleans',
   position: { x: 730, y: 570 },
   picture: 'img/new_orleans_1.png',
-  outgoing: ['New Orleans']
+  outgoing: ['Sea Rim, Texas']
+}), _defineProperty(_PINS, 'Sea Rim, Texas', {
+  name: ['Sea Rim, Texas'],
+  key: 'sea_rim_texas',
+  position: { x: 670, y: 570 },
+  picture: 'img/sea_rim_texas_1.png',
+  outgoing: ['Enchanted Rock, Texas']
+}), _defineProperty(_PINS, 'Enchanted Rock, Texas', {
+  name: ['Enchanted Rock, Texas'],
+  key: 'enchanted_rock_texas',
+  position: { x: 580, y: 515 },
+  picture: 'img/enchanted_rock_texas_1.png',
+  outgoing: ['Caprock Canyon, Texas']
+}), _defineProperty(_PINS, 'Caprock Canyon, Texas', {
+  name: ['Caprock Canyon, Texas'],
+  key: 'caprock_canyon_texas',
+  position: { x: 520, y: 455 },
+  picture: 'img/caprock_canyon_texas_1.png',
+  outgoing: ['White Sands']
+}), _defineProperty(_PINS, 'White Sands', {
+  name: ['White Sands'],
+  key: 'white_sands',
+  position: { x: 455, y: 485 },
+  picture: 'img/white_sands_1.png',
+  outgoing: ['White Sands']
 }), _PINS);
 
 var mapSize = { width: 1200, height: 800 };
 
 var RoadTrip = function RoadTrip() {
-  var _useState = useState({
-    width: window.innerWidth, height: window.innerHeight
-  }),
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+  if (height > width) {
+    height = width * 0.7;
+  }
+
+  var _useState = useState({ width: width, height: height }),
       _useState2 = _slicedToArray(_useState, 2),
       dims = _useState2[0],
       setDims = _useState2[1];
+  //   width: window.innerWidth, height: window.innerHeight,
+  // });
 
   var handleResize = debounce(function () {
-    setDims({
-      width: window.innerWidth, height: window.innerHeight
-    });
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    if (height > width) {
+      height = width * 0.7;
+    }
+    setDims({ width: width, height: height });
   }, 500);
 
   var _useMemo = useMemo(function () {
@@ -31054,6 +31089,7 @@ var RoadTrip = function RoadTrip() {
           var e = _step.value;
 
           var epin = PINS[e];
+          console.log(epin);
           var eadj = { x: epin.position.x / x, y: epin.position.y / y };
           edges.push({ start: adj, end: eadj });
         }
@@ -31170,7 +31206,7 @@ var Pin = function Pin(props) {
         left: adjustedPosition.x,
         border: border
       },
-      href: pin.key + '.html'
+      href: pin.link ? pin.link : pin.key + '.html'
     },
     img
   );
