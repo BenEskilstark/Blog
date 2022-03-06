@@ -22,6 +22,7 @@ const PINS = {
     position: {x: 225, y: 450},
     picture: 'img/sunfair_dry_lake_1.png',
     outgoing: ['Red Rock Canyon, Nevada'],
+    link: 'https://benjamineskildsen.substack.com/p/sunfair-dry-lake-bed-california?s=w',
   },
   ['Red Rock Canyon, Nevada']: {
     name: 'Red Rock Canyon, Nevada',
@@ -172,7 +173,6 @@ const RoadTrip = () => {
       // edges:
       for (const e of pin.outgoing) {
         const epin = PINS[e];
-        console.log(epin)
         const eadj = {x: epin.position.x / x, y: epin.position.y / y};
         edges.push({start: adj, end: eadj});
       }
@@ -228,13 +228,13 @@ const RoadTrip = () => {
         style={{
           overflow: 'hidden',
           maxWidth: '100%',
-          maxHeight: '100%',
+          maxHeight: height,
           margin: 'auto',
           marginLeft: 0,
           position: 'relative',
         }}
       >
-        <img src='./img/USA.png' width='100%' height='100%' />
+        <img src='./img/USA.png' width='100%' height={height} />
         {edges}
         {pins}
         <a

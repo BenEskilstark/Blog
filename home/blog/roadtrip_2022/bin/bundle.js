@@ -30944,7 +30944,8 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'sunfair_dry_lake',
   position: { x: 225, y: 450 },
   picture: 'img/sunfair_dry_lake_1.png',
-  outgoing: ['Red Rock Canyon, Nevada']
+  outgoing: ['Red Rock Canyon, Nevada'],
+  link: 'https://benjamineskildsen.substack.com/p/sunfair-dry-lake-bed-california?s=w'
 }), _defineProperty(_PINS, 'Red Rock Canyon, Nevada', {
   name: 'Red Rock Canyon, Nevada',
   key: 'red_rock_canyon',
@@ -31089,7 +31090,6 @@ var RoadTrip = function RoadTrip() {
           var e = _step.value;
 
           var epin = PINS[e];
-          console.log(epin);
           var eadj = { x: epin.position.x / x, y: epin.position.y / y };
           edges.push({ start: adj, end: eadj });
         }
@@ -31156,13 +31156,13 @@ var RoadTrip = function RoadTrip() {
         style: {
           overflow: 'hidden',
           maxWidth: '100%',
-          maxHeight: '100%',
+          maxHeight: height,
           margin: 'auto',
           marginLeft: 0,
           position: 'relative'
         }
       },
-      React.createElement('img', { src: './img/USA.png', width: '100%', height: '100%' }),
+      React.createElement('img', { src: './img/USA.png', width: '100%', height: height }),
       edges,
       pins,
       React.createElement(
