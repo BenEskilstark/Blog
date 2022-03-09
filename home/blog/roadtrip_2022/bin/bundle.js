@@ -30951,13 +30951,15 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'red_rock_canyon',
   position: { x: 230, y: 365 },
   picture: 'img/red_rock_canyon_1.png',
-  outgoing: ['Spotted Wolf View Area, Utah']
+  outgoing: ['Spotted Wolf View Area, Utah'],
+  link: 'https://benjamineskildsen.substack.com/p/red-rock-canyon-nevada?s=w'
 }), _defineProperty(_PINS, 'Spotted Wolf View Area, Utah', {
   name: 'Spotted Wolf View Area, Utah',
   key: 'spotted_wolf_utah',
   position: { x: 355, y: 310 },
   picture: 'img/spotted_wolf_utah_1.png',
-  outgoing: ['Loveland, Colorado']
+  outgoing: ['Loveland, Colorado'],
+  link: 'https://benjamineskildsen.substack.com/p/spotted-wolf-view-area-utah?s=w'
 }), _defineProperty(_PINS, 'Loveland, Colorado', {
   name: 'Loveland, Colorado',
   key: 'loveland',

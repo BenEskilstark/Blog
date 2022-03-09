@@ -30,6 +30,7 @@ const PINS = {
     position: {x: 230, y: 365},
     picture: 'img/red_rock_canyon_1.png',
     outgoing: ['Spotted Wolf View Area, Utah'],
+    link: 'https://benjamineskildsen.substack.com/p/red-rock-canyon-nevada?s=w',
   },
   ['Spotted Wolf View Area, Utah']: {
     name: 'Spotted Wolf View Area, Utah',
@@ -37,6 +38,7 @@ const PINS = {
     position: {x: 355, y: 310},
     picture: 'img/spotted_wolf_utah_1.png',
     outgoing: ['Loveland, Colorado'],
+    link: 'https://benjamineskildsen.substack.com/p/spotted-wolf-view-area-utah?s=w',
   },
   ['Loveland, Colorado']: {
     name: 'Loveland, Colorado',
