@@ -30965,7 +30965,8 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'loveland',
   position: { x: 455, y: 315 },
   picture: 'img/loveland_1.png',
-  outgoing: ['Osborn, Missouri']
+  outgoing: ['Osborn, Missouri'],
+  link: 'https://benjamineskildsen.substack.com/p/loveland-colorado'
 }), _defineProperty(_PINS, 'Osborn, Missouri', {
   name: ['Osborn, Missouri'],
   key: 'osborn_mo',

@@ -46,6 +46,7 @@ const PINS = {
     position: {x: 455, y: 315},
     picture: 'img/loveland_1.png',
     outgoing: ['Osborn, Missouri'],
+    link: 'https://benjamineskildsen.substack.com/p/loveland-colorado',
   },
   ['Osborn, Missouri']: {
     name: ['Osborn, Missouri'],
