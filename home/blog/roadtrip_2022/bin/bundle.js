@@ -30972,7 +30972,8 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'osborn_mo',
   position: { x: 700, y: 310 },
   picture: 'img/osborn_mo_1.png',
-  outgoing: ['Columbus, Ohio']
+  outgoing: ['Columbus, Ohio'],
+  link: 'https://benjamineskildsen.substack.com/p/osborn-missouri?s=w'
 }), _defineProperty(_PINS, 'Columbus, Ohio', {
   name: ['Columbus, Ohio'],
   key: 'columbus',
@@ -31045,7 +31046,13 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'white_sands',
   position: { x: 455, y: 485 },
   picture: 'img/white_sands_1.png',
-  outgoing: ['White Sands']
+  outgoing: ['Phoenix, Arizona']
+}), _defineProperty(_PINS, 'Phoenix, Arizona', {
+  name: ['Phoenix, Arizona'],
+  key: 'phoenix_arizona',
+  position: { x: 290, y: 400 },
+  picture: 'img/phoenix_arizona_1.png',
+  outgoing: ['Sunfair Dry Lake Bed, California']
 }), _PINS);
 
 var mapSize = { width: 1200, height: 800 };

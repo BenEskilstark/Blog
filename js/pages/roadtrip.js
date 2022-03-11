@@ -54,6 +54,7 @@ const PINS = {
     position: {x: 700, y: 310},
     picture: 'img/osborn_mo_1.png',
     outgoing: ['Columbus, Ohio'],
+    link: 'https://benjamineskildsen.substack.com/p/osborn-missouri?s=w',
   },
   ['Columbus, Ohio']: {
     name: ['Columbus, Ohio'],
@@ -138,7 +139,14 @@ const PINS = {
     key: 'white_sands',
     position: {x: 455, y: 485},
     picture: 'img/white_sands_1.png',
-    outgoing: ['White Sands'],
+    outgoing: ['Phoenix, Arizona'],
+  },
+  ['Phoenix, Arizona']: {
+    name: ['Phoenix, Arizona'],
+    key: 'phoenix_arizona',
+    position: {x: 290, y: 400},
+    picture: 'img/phoenix_arizona_1.png',
+    outgoing: ['Sunfair Dry Lake Bed, California'],
   },
 }
 
