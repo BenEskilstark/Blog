@@ -62,6 +62,7 @@ const PINS = {
     position: {x: 900, y: 300},
     picture: 'img/columbus_1.png',
     outgoing: ['Woods Hole, Massachusetts', 'Lexington, Kentucky'],
+    link: 'https://benjamineskildsen.substack.com/p/columbus-ohio?s=w',
   },
   ['Woods Hole, Massachusetts']: {
     name: ['Woods Hole, Massachusetts'],
@@ -69,6 +70,7 @@ const PINS = {
     position: {x: 1120, y: 230},
     picture: 'img/woods_hole_1.png',
     outgoing: ['Washington DC', 'Bridgton, Maine'],
+    link: 'https://benjamineskildsen.substack.com/p/woods-hole-massachusetts?s=w',
   },
   ['Washington DC']: {
     name: ['Washington DC'],

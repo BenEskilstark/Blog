@@ -30979,13 +30979,15 @@ var PINS = (_PINS = {}, _defineProperty(_PINS, 'Menlo Park, California', {
   key: 'columbus',
   position: { x: 900, y: 300 },
   picture: 'img/columbus_1.png',
-  outgoing: ['Woods Hole, Massachusetts', 'Lexington, Kentucky']
+  outgoing: ['Woods Hole, Massachusetts', 'Lexington, Kentucky'],
+  link: 'https://benjamineskildsen.substack.com/p/columbus-ohio?s=w'
 }), _defineProperty(_PINS, 'Woods Hole, Massachusetts', {
   name: ['Woods Hole, Massachusetts'],
   key: 'woods_hole',
   position: { x: 1120, y: 230 },
   picture: 'img/woods_hole_1.png',
-  outgoing: ['Washington DC', 'Bridgton, Maine']
+  outgoing: ['Washington DC', 'Bridgton, Maine'],
+  link: 'https://benjamineskildsen.substack.com/p/woods-hole-massachusetts?s=w'
 }), _defineProperty(_PINS, 'Washington DC', {
   name: ['Washington DC'],
   key: 'washington_dc',
