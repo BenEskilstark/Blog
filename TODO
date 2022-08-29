@@ -1,9 +1,9 @@
 
-- - - - - FRIDAY - - - - -
-  - family-specifc page
-    - validation middleware to get the thread
-    - update comment thread when another user posts a comment
-      (fetching updates should be a prop that family thread passes)
+- - - - - ANALYTICS - - - - -
+  - js script on every page
+    - localStorage for uniqueness per path
+    - invokes axios call to /visit
+    - revert middleware/recordVisit to simple function instead of nested function
 
 - - - - - FRONTEND - - - - -
 
