@@ -32,7 +32,7 @@ const upsertQuery = (table, row, updateRow, filters, pgClient) => {
   const setStr = toUpdateStr(updateRow);
   const values = toValuesStr(row);
   const {filterStr, queryPayload} = toFilterStr(filters, null, Object.keys(row).length, true);
-  const conflictTarget = Object.keys(filters)[0];
+  const conflictTarget = Object.keys(filters).join(',');
   const queryStr = `INSERT INTO ${table} ${values.valuesStr}
     ON CONFLICT (${conflictTarget}) DO UPDATE ${setStr} ${filterStr}`;
   return queryPostgres(
