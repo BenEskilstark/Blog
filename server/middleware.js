@@ -43,9 +43,26 @@ const minimumPermissionLevelRequired = (requiredPermissionLevel) => {
 
 const recordVisit = () => {
   return (req, res, next) => {
+    if (req.method != 'GET') {
+      next();
+      return;
+    }
+
     const hostname = 'benhub';
     const map = req.method;
     let path = req.path;
+
+    const pathArr = req.path.split('/');
+    if (pathArr[1] == 'index.html' || path == '/') {
+      path = '/index';
+    } else if (
+      pathArr.length > 2 && pathArr[pathArr.length - 1].split('.')[1] == 'html'
+    ) {
+      path = req.path;
+    } else {
+      next();
+      return;
+    }
     const table = 'site_visits';
     const isUnique = false; // TODO: how to determine uniqueness?
     if (!isUnique) {
