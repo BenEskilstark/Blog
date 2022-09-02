@@ -100,7 +100,6 @@ const recordVisit = () => {
         res.status(201).send({success: true});
       });
     }
-    next();
   };
 };
 

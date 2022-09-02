@@ -1,6 +1,9 @@
 
 - - - - - ANALYTICS - - - - -
-  - js script on every page
+  - fix bug where headers are trying to be set after being sent to client
+    probably on the recordVisit middleware
+  - unique visits
+    - js script on every page
     - localStorage for uniqueness per path
     - invokes axios call to /visit
     - revert middleware/recordVisit to simple function instead of nested function
@@ -35,3 +38,4 @@
 js/pages/carousel.js:// TODO: this is a hack
 js/Masthead.react.js:// TODO: masthead should take prop for href relative to
 server/dbUtils.js:  // TODO: can you connect/end the same client multiple times?
+server/middleware.js:    const isUnique = false; // TODO: how to determine uniqueness?
