@@ -41,66 +41,60 @@ const minimumPermissionLevelRequired = (requiredPermissionLevel) => {
   };
 };
 
-const recordVisit = () => {
-  return (req, res, next) => {
-    if (req.method != 'GET') {
-      next();
-      return;
-    }
+const recordVisit = (req, res, next) => {
+  if (req.method != 'GET') {
+    next();
+    return;
+  }
 
-    const hostname = 'benhub';
-    const map = req.method;
-    let path = req.path;
+  const hostname = 'benhub';
+  const map = req.method;
+  let path = req.path;
 
-    const pathArr = req.path.split('/');
-    if (pathArr[1] == 'index.html' || path == '/') {
-      path = '/index';
-    } else if (
-      pathArr.length > 2 && pathArr[pathArr.length - 1].split('.')[1] == 'html'
-    ) {
-      path = req.path;
-    } else {
-      next();
-      return;
-    }
-    const table = 'site_visits';
-    const isUnique = false; // TODO: how to determine uniqueness?
-    if (!isUnique) {
-      upsertQuery(
-        table,
-        {
-          hostname, path, map,
-          num_visits: 1,
-          last_visited: new Date(),
-        },
-        {
-          num_visits: table + '.num_visits + 1',
-          last_visited: 'current_timestamp',
-        },
-        {hostname, path, map},
-      ).then(() => {
-        res.status(201).send({success: true});
-      });
-    } else {
-      upsertQuery(
-        table,
-        {
-          hostname, path, map,
-          num_visits: 1,
-          num_unique_visits: 1,
-          last_visited: new Date(),
-        },
-        {
-          num_visits: table + '.num_visits + 1',
-          num_unique_visits: table + '.num_unique_visits + 1',
-          last_visited: 'current_timestamp',
-        },
-        {hostname, path, map},
-      ).then(() => {
-        res.status(201).send({success: true});
-      });
-    }
-  };
+  const pathArr = req.path.split('/');
+  if (pathArr[1] == 'index.html' || path == '/') {
+    path = '/index';
+  } else if (
+    pathArr.length > 2 && pathArr[pathArr.length - 1].split('.')[1] == 'html'
+  ) {
+    path = req.path;
+  } else {
+    next();
+    return;
+  }
+  const table = 'site_visits';
+  const isUnique = false; // TODO: how to determine uniqueness?
+  if (!isUnique) {
+    upsertQuery(
+      table,
+      {
+        hostname, path, map,
+        num_visits: 1,
+        last_visited: new Date(),
+      },
+      {
+        num_visits: table + '.num_visits + 1',
+        last_visited: 'current_timestamp',
+      },
+      {hostname, path, map},
+    );
+  } else {
+    upsertQuery(
+      table,
+      {
+        hostname, path, map,
+        num_visits: 1,
+        num_unique_visits: 1,
+        last_visited: new Date(),
+      },
+      {
+        num_visits: table + '.num_visits + 1',
+        num_unique_visits: table + '.num_unique_visits + 1',
+        last_visited: 'current_timestamp',
+      },
+      {hostname, path, map},
+    );
+  }
 };
 
 // const recordVisit = () => {

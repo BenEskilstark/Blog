@@ -38,4 +38,4 @@
 js/pages/carousel.js:// TODO: this is a hack
 js/Masthead.react.js:// TODO: masthead should take prop for href relative to
 server/dbUtils.js:  // TODO: can you connect/end the same client multiple times?
-server/middleware.js:    const isUnique = false; // TODO: how to determine uniqueness?
+server/middleware.js:  const isUnique = false; // TODO: how to determine uniqueness?
