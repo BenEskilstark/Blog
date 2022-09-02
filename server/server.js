@@ -142,7 +142,7 @@ comments.post('/delete', [
 // Blog
 // -------------------------------------------------------------------------
 const blog = express();
-blog.use(recordVisit);
+// blog.use(recordVisit);
 
 // force https redirect, and don't try to record site visits in prod
 if (port != 8000) {
