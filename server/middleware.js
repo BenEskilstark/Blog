@@ -95,6 +95,7 @@ const recordVisit = (req, res, next) => {
       {hostname, path, map},
     );
   }
+  next();
 };
 
 // const recordVisit = () => {
