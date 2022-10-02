@@ -13,6 +13,7 @@ const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 const {jwtSecret} = require('./config');;
 const urlParser = require('url');
+const cors = require('cors');
 
 const port = process.env.PORT || 8000;
 
@@ -144,19 +145,21 @@ comments.post('/delete', [
 const blog = express();
 
 
-// force https redirect, and don't try to record site visits in prod
-if (port != 8000) {
-  blog.use(recordVisit);
-  blog.use((req, res, next) => {
-    if (req.header('x-forwarded-proto') !== 'https') {
-      res.redirect(`https://${req.header('host')}${req.url}`)
-    } else {
-      next()
-    }
-  })
+blog.use(recordVisit);
+if (port != 80) {
+  // force https redirect, and don't try to record site visits in prod
+  // blog.use((req, res, next) => {
+  //   if (req.header('x-forwarded-proto') !== 'https') {
+  //     res.redirect(`https://${req.header('host')}${req.url}`)
+  //   } else {
+  //     next()
+  //   }
+  // })
 }
 
 blog.use(express.static('home'));
+blog.use(express.json());
+blog.use(cors());
 blog.use('/blog', users);
 blog.use(['/blog', '/threads'], comments);
 console.log("server listening on port", port);

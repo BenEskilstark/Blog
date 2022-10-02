@@ -118,21 +118,21 @@ const recordVisit = (req, res, next) => {
 //   };
 // };
 
-const setVisit = (site) => {
-  upsertQuery(
-    'visits',
-    {
-      site: site,
-      num_visits: 1,
-      last_visited: new Date(),
-    },
-    {
-      num_visits: 'visits.num_visits + 1',
-      last_visited: 'current_timestamp',
-    },
-    {site},
-  );
-}
+// const setVisit = (site) => {
+//   upsertQuery(
+//     'visits',
+//     {
+//       site: site,
+//       num_visits: 1,
+//       last_visited: new Date(),
+//     },
+//     {
+//       num_visits: 'visits.num_visits + 1',
+//       last_visited: 'current_timestamp',
+//     },
+//     {site},
+//   );
+// }
 
 module.exports = {
   validJWTNeeded,
