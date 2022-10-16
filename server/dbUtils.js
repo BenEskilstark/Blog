@@ -1,5 +1,6 @@
 
 const {Client} = require('pg');
+const {dbURL} = require('./config');
 
 
 // -------------------------------------------------------------------------
@@ -53,18 +54,10 @@ const updateQuery = (table, row, filters, pgClient) => {
 // -------------------------------------------------------------------------
 
 const getPostgresClient = () => {
-  const settings = process.env.PORT
-    ? { // heroku version
-      connectionString: process.env.DATABASE_URL,
-      ssl: {rejectUnauthorized: false},
-    }
-    : { // prod droplet version
-      port: 5432,
-      user: 'postgres',
-      password: '100bones',
-      database: 'postgres',
-      ssl: {rejectUnauthorized: false},
-    };
+  const settings = {
+    connectionString: dbURL,
+    ssl: {rejectUnauthorized: false},
+  };
   const client = new Client(settings);
   // TODO: can you connect/end the same client multiple times?
   return client;

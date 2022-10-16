@@ -2,7 +2,7 @@
   "name": "bens_blog",
   "version": "1.0.0",
   "description": "Compiling publicly accessible data about police acquisitions of military material",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "flow": "flow",
     "babel": "babel",

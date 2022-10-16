@@ -50,6 +50,7 @@ const recordVisit = (req, res, next) => {
   const hostname = 'benhub';
   const map = req.method;
   let path = req.path;
+  console.log('recordVisit', hostname, path);
 
   const pathArr = req.path.split('/');
   if (pathArr[1] == 'index.html' || path == '/') {

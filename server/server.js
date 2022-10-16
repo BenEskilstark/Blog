@@ -14,6 +14,7 @@ const jwt = require('jsonwebtoken');
 const {jwtSecret} = require('./config');;
 const urlParser = require('url');
 const cors = require('cors');
+const path = require('path');
 
 const port = process.env.PORT || 8000;
 
@@ -157,7 +158,7 @@ if (port != 80) {
   // })
 }
 
-blog.use(express.static('home'));
+blog.use(express.static(path.join(__dirname, '../home')));
 blog.use(express.json());
 blog.use(cors());
 blog.use('/blog', users);
