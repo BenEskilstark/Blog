@@ -142,7 +142,7 @@ function Automata(props) {
         const cellWidth = width / config.gridWidth;
         const cellHeight = height / config.gridHeight;
         const gridX = Math.floor(ev.clientX / cellWidth);
-        const gridY = Math.floor((ev.clientY - 145)/ (cellHeight + 2));
+        const gridY = Math.floor((ev.clientY - 170)/ (cellHeight + 2));
         grid[gridX][gridY] = 1;
       }}
     >
