@@ -23,6 +23,7 @@ var PrimitivesTab = React.createClass({
         var matrix = makeEmptyMatrix();
         nextProductionRules[defaultName] = [{
             source: nextPrimitives[defaultName],
+            weight: 1,
             productions: [{
                 primitive: nextPrimitives[defaultName],
                 transformations: [{scale: 1, rotation: 0, transX: 0, transY: 0}],

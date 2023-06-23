@@ -1,51 +1,54 @@
 var ProductionRules = React.createClass({
 
     getInitialState: function() {
-        return {collapsed: false};
+        return {
+          collapsed: false,
+          nextRuleName: Object.keys(this.props.productionRules)[0],
+        };
     },
 
-    // TODO: fix this
     addProductionRule: function() {
-        var nextPrimitives = this.props.primitives;
-        nextPrimitives.push(String.fromCharCode(this.props.primitives.length + 65));
-
-        var nextProductionRules = {};
-        var nextPrimitiveLines = {};
-        for (var p = 0, primitive; primitive = this.props.primitives[p]; p++) {
-            if (this.props.productionRules[primitive]) {
-                nextProductionRules[primitive] = this.props.productionRules[primitive];
-                nextPrimitiveLines[primitive] = this.props.primitiveLines[primitive];
-            } else {
-                nextProductionRules[primitive] = [];
-                nextPrimitiveLines[primitive] = [];
-            }
-        }
-
-        console.log(nextPrimitiveLines);
-        this.props.handlePrimitiveLinesChange(nextPrimitiveLines);
-        this.props.handlePrimitivesChange(nextPrimitives);
+      const nextProductionRules = {...this.props.productionRules};
+      console.log(nextProductionRules);
+      nextProductionRules[this.state.nextRuleName].push(
+          {
+            source: this.props.primitives[this.state.nextRuleName],
+            weight: 1,
+            productions: [{
+              primitive: this.props.primitives[this.state.nextRuleName],
+              transformations: [{scale: 1, rotation: 0, transX: 0, transY: 0}],
+              matrix: [[1, 0, 0], [0, 1, 0], [0, 0, 1]],
+            }],
+          }
+      );
+      this.props.handleProductionRulesChange(nextProductionRules);
     },
 
-    renderPrimitiveSelect: function(startValue) {
-        var primitives = [];
-        for (p in this.props.primitives) {
-            primitives.push(this.props.primitives[p]);
+    renderNextRuleSelect: function() {
+        var ruleNames = [];
+        for (p in this.props.productionRules) {
+            ruleNames.push(p);
         }
 
         var select = <select
-            value={startValue}
-            onChange={this.handlePrimitiveSelect}
-            id={"selectProductionPrimitive_" + this.props.name}>
-                {primitives.map(function(primitive) {
+            value={this.state.nextRuleName}
+            onChange={this.handleNextRuleSelect}
+            id={"selectNextProductionRule"}>
+                {ruleNames.map(function(name) {
                     return <option
-                        value={primitive.name}
-                        key={primitive.name}>
-                            {primitive.name}
+                        value={name}
+                        key={name}>
+                            {name}
                         </option>
                 })}
         </select>;
 
         return select;
+    },
+
+    handleNextRuleSelect: function() {
+        var select = document.getElementById("selectNextProductionRule").value;
+      this.setState({nextRuleName: select});
     },
 
     handleCollapseClick: function() {
@@ -59,7 +62,7 @@ var ProductionRules = React.createClass({
     render: function() {
         var productionRules = [];
         for (var rule in this.props.productionRules) {
-            productionRules.push(this.props.productionRules[rule]);
+            productionRules.push(...this.props.productionRules[rule]);
         }
 
         var collapseString = "(Click to Collapse this Panel)";
@@ -71,23 +74,26 @@ var ProductionRules = React.createClass({
             clickHandler = this.handleExpandClick;
         }
 
-                // <button className="fancyButton" onClick={clickHandler}>
-                //     {collapseString}
-                // </button>
         return (
             <div className="menu">
                 <h2>{"Production Rules"}</h2>
                 <span style={{display: display}}>
-                    {productionRules.map(function(rule) {
-                        return (<span key={"spP_" + rule[0].source.name}>
-                            {"Source Symbol: " + rule[0].source.name}
+                    {productionRules.map(function(rule, i) {
+                        return (<span key={"spP_" + rule.source.name + i}>
+                            {"Source Symbol: " + rule.source.name}
                             <Production {...this.props}
-                                key={"productionRule_" + rule[0].source.name}
-                                rule={rule[0]}
-                                name={rule[0].source.name} />
-                            <div className="divider" key={"divP_"+rule[0].source.name}></div>
+                                key={"productionRule_" + rule.source.name + i}
+                                rule={rule}
+                                name={rule.source.name}
+                                index={i}
+                            />
+                            <div className="divider" key={"divP_"+rule.source.name}></div>
                         </span>);
                     }.bind(this))}
+                    <button className="fancyButton" onClick={this.addProductionRule}>
+                      "Add Rule"
+                    </button>
+                    {this.renderNextRuleSelect()}
                 </span>
             </div>
         );

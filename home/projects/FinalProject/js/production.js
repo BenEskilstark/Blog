@@ -3,6 +3,7 @@ var Production = React.createClass({
     getInitialState: function() {
         return {
             currentLayer: 0,
+            weight: this.props.rule.weight,
             currentTransformations: this.props.rule.productions[0].transformations[0],
             currentMatrix: this.props.rule.productions[0].matrix,
         };
@@ -10,13 +11,15 @@ var Production = React.createClass({
 
     handleChange: function() {
         var scale = parseFloat(document.getElementById(
-            "slider_production_" + this.props.rule.source.name + this.state.currentLayer + "_Scale").value / 10);
+            "slider_production_" + this.props.name + this.props.index + this.state.currentLayer + "_Scale").value / 10);
         var rotation = parseInt(document.getElementById(
-            "slider_production_" + this.props.rule.source.name + this.state.currentLayer + "_Rotation").value);
+            "slider_production_" + this.props.name + this.props.index + this.state.currentLayer + "_Rotation").value);
         var transX = parseInt(document.getElementById(
-            "slider_production_" + this.props.rule.source.name + this.state.currentLayer + "_TransX").value);
+            "slider_production_" + this.props.name + this.props.index + this.state.currentLayer + "_TransX").value);
         var transY = parseInt(document.getElementById(
-            "slider_production_" + this.props.rule.source.name + this.state.currentLayer + "_TransY").value);
+            "slider_production_" + this.props.name + this.props.index + this.state.currentLayer + "_TransY").value);
+        var weight = parseInt(document.getElementById(
+            "slider_production_" + this.props.name + this.props.index + this.state.currentLayer + "_weight").value);
 
         var currentTransformations = this.state.currentTransformations;
         currentTransformations.scale = scale;
@@ -31,12 +34,21 @@ var Production = React.createClass({
         currentMatrix[1] = [scale * sin, scale * cos, transY];
         currentMatrix[2] = [0, 0, 1];
 
-        this.setState({currentTransformations: currentTransformations, currentMatrix: currentMatrix});
-        this.props.handleProductionRulesChange(this.props.productionRules);
+        this.setState({currentTransformations: currentTransformations, currentMatrix: currentMatrix, weight: weight});
+        const nextProductionRules = {
+          ...this.props.productionRules,
+          [this.props.name]: [...this.props.productionRules[this.props.name]],
+        };
+        nextProductionRules[this.props.name][this.props.index] = {
+          ...this.props.productionRules[this.props.name][this.props.index],
+          weight: this.state.weight,
+        };
+
+        this.props.handleProductionRulesChange(nextProductionRules);
     },
 
     addLayer: function() {
-        var select = document.getElementById("selectNewProductionLayer_" + this.props.name).value;
+        var select = document.getElementById("selectNewProductionLayer_" + this.props.name + this.props.index).value;
 
         var transformations = {scale: 1, rotation: 0, transX: 0, transY: 0};
         var matrix = makeEmptyMatrix();
@@ -58,7 +70,7 @@ var Production = React.createClass({
     },
 
     handleLayerSelect: function() {
-        var select = document.getElementById("selectProductionLayer_" + this.props.name).value;
+        var select = document.getElementById("selectProductionLayer_" + this.props.name + this.props.index).value;
         var currentTransformations = this.props.rule.productions[select].transformations[0];
         var currentMatrix = this.props.rule.productions[select].matrix;
         this.setState({
@@ -69,7 +81,7 @@ var Production = React.createClass({
     },
 
     handlePrimitiveSelect: function() {
-        var select = document.getElementById("selectProductionPrimitive_" + this.props.name).value;
+        var select = document.getElementById("selectProductionPrimitive_" + this.props.name + this.props.index).value;
         this.props.rule.primitive = this.props.primitives[select];
         this.props.handleProductionRulesChange(this.props.productionRules);
 
@@ -84,7 +96,7 @@ var Production = React.createClass({
         var select = <select
             value={startValue}
             onChange={this.handleLayerSelect}
-            id={"selectProductionLayer_" + this.props.name}>
+            id={"selectProductionLayer_" + this.props.name + this.props.index}>
                 {this.props.rule.productions.map(function(production, i) {
                     return <option
                         value={i}
@@ -105,7 +117,7 @@ var Production = React.createClass({
 
         var select = <select
             value={startValue}
-            id={"selectNewProductionLayer_" + this.props.name}>
+            id={"selectNewProductionLayer_" + this.props.name + this.props.index}>
                 {primitives.map(function(primitive) {
                     return <option
                         value={primitive.name}
@@ -127,7 +139,7 @@ var Production = React.createClass({
         var select = <select
             value={startValue}
             onChange={this.handlePrimitiveSelect}
-            id={"selectProductionPrimitive_" + this.props.name}>
+            id={"selectProductionPrimitive_" + this.props.name + this.props.index}>
                 {primitives.map(function(primitive) {
                     return <option
                         value={primitive.name}
@@ -148,14 +160,21 @@ var Production = React.createClass({
             <div className="primitive">
                 <MiniCanvasProduction {...this.props}
                     rule={this.props.rule}
-                    name={this.props.name} />
+                    name={this.props.name + this.props.index} />
                 <div className="productionRHS">
                     {"Current Symbol: "}
                     {layer}
                     <br />
                     <Slider
+                        id={"production_" + this.props.name + this.props.index + this.state.currentLayer + "_weight"}
+                        name={"Weight"}
+                        min={1}
+                        max={100}
+                        sliderValue={this.state.weight}
+                        changeHandler={this.handleChange} />
+                    <Slider
                         name={"Scale"}
-                        id={"production_" + this.props.rule.source.name + this.state.currentLayer + "_Scale"}
+                        id={"production_" + this.props.name + this.props.index + this.state.currentLayer + "_Scale"}
                         min={0}
                         max={50}
                         isScale={true}
@@ -163,20 +182,20 @@ var Production = React.createClass({
                         changeHandler={this.handleChange} />
                     <Slider
                         name={"Rotate"}
-                        id={"production_" + this.props.rule.source.name + this.state.currentLayer + "_Rotation"}
+                        id={"production_" + this.props.name + this.props.index + this.state.currentLayer + "_Rotation"}
                         min={-360}
                         max={360}
                         sliderValue={this.state.currentTransformations.rotation}
                         changeHandler={this.handleChange} />
                     <Slider
-                        id={"production_" + this.props.rule.source.name + this.state.currentLayer + "_TransX"}
+                        id={"production_" + this.props.name + this.props.index + this.state.currentLayer + "_TransX"}
                         name={"Tran X"}
                         min={-100}
                         max={100}
                         sliderValue={this.state.currentTransformations.transX}
                         changeHandler={this.handleChange} />
                     <Slider
-                        id={"production_" + this.props.rule.source.name + this.state.currentLayer + "_TransY"}
+                        id={"production_" + this.props.name + this.props.index + this.state.currentLayer + "_TransY"}
                         name={"Tran Y"}
                         min={-100}
                         max={100}
