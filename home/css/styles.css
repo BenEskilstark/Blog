@@ -118,6 +118,7 @@ h1 a {
 	font: helvetica;
 	font-size: 14pt;
   overflow: auto;
+  line-height: 25px;
 }
 
 .roadtrip_pin {
